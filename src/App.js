@@ -3,6 +3,7 @@ import './App.css';
 
 import Index from './pages/Index';
 import Login from './pages/Login';
+import SignUp from './pages/SignUp';
 
 
 function App() {
@@ -10,7 +11,8 @@ function App() {
     <Router>
       <Switch>
         <Route path="/" component={Index} exact />
-        <Route path="/Login" component={Login} exact />
+        <Route path="/login" component={Login} exact />
+        <Route path="/signup" component={SignUp} />
       </Switch>
     </Router>
   );

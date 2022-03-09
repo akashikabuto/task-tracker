@@ -2,9 +2,10 @@ import logo from '../images/productivity.png';
 import google from '../images/google.png';
 import { useHistory } from 'react-router-dom';
 
-export default function LoginBody() {
+export default function SignUpBody() {
 
   const history = useHistory();
+
 
   return (
     <>
@@ -13,13 +14,14 @@ export default function LoginBody() {
         <p className='index-tilte' >Tracker</p>
       </div>
       <div className='login-form-container' >
-        <p className='tracker-t' >Log in to tracker</p>
+        <p className='tracker-t' >Register to tracker</p>
         <form>
           <input placeholder='Email' className='login-input' />
-          <input placeholder='password' className='login-input' />
-          <button className='login-button' >Login</button>
+          <input placeholder='Username' className='login-input' />
+          <input placeholder='Full name' className='login-input' />
+          <input placeholder='Phone' className='login-input' />
+          <button className='login-button' >Register</button>
         </form>
-        <p className='login-not-account'>Forgot password?</p>
         <br />
         <p>or</p>
         <br />
@@ -30,7 +32,7 @@ export default function LoginBody() {
         <div className='login-line' >
         </div>
         <div>
-          <p className='login-not-account' onClick={() => history.push('/signup')}  >Do not have account?</p>
+          <p className='login-not-account' onClick={() => history.push('/login')}  >Have account?</p>
         </div>
       </div>
     </>
