@@ -85,7 +85,7 @@
   text-align: center;
   align-items: center;
   padding: 10px;
-  margin-top: 200px;
+  margin-top: 100px;
 }
 .container-button {
   background: #0065ff;
@@ -164,14 +164,14 @@
   outline-color: #0065ff;
 }
 .index-login-button {
-  background: #0065ff;
+  background: whitesmoke;
   border: none;
   padding: 0.75rem 1.5rem;
   border-radius: 2px;
   width: fit-content;
   text-transform: uppercase;
   margin: 10px;
-  color: white;
+  color: #0065ff;
 }
 .index-sign-up-button {
   background: #0065ff;
