@@ -1,11 +1,34 @@
+import { useState } from 'react';
 import logo from '../images/productivity.png';
 import google from '../images/google.png';
 import { useHistory } from 'react-router-dom';
+import Input from './Input';
 
 export default function SignUpBody() {
 
   const history = useHistory();
 
+  const initialState = {
+    email: "",
+    username: "",
+    fullName: "",
+    phone: "",
+    password: ""
+  };
+
+  const [state, setState] = useState(initialState);
+
+  function OnChange(e) {
+    setState({ ...state, [e.target.name]: e.target.value });
+  }
+
+  function handleSignUp(e) {
+    e.preventDefault();
+    let user = [];
+    user.push(state);
+    localStorage.setItem('user', JSON.stringify(user));
+    document.getElementById('sign-up-form').reset();
+  }
 
   return (
     <>
@@ -15,11 +38,12 @@ export default function SignUpBody() {
       </div>
       <div className='login-form-container' >
         <p className='tracker-t' >Register to tracker</p>
-        <form>
-          <input placeholder='Email' className='login-input' />
-          <input placeholder='Username' className='login-input' />
-          <input placeholder='Full name' className='login-input' />
-          <input placeholder='Phone' className='login-input' />
+        <form id='sign-up-form' onSubmit={handleSignUp}  >
+          <Input placeholder='Email' type="email" handleOnchange={OnChange} name="email" />
+          <Input placeholder="Username" type="text" handleOnchange={OnChange} name="username" />
+          <Input placeholder="Full name" type="text" handleOnchange={OnChange} name="fullName" />
+          <Input placeholder="Phone" type="text" handleOnchange={OnChange} name="phone" />
+          <Input placeholder="Password" type="password" handleOnchange={OnChange} name="password" />
           <button className='login-button' >Register</button>
         </form>
         <br />
@@ -27,7 +51,7 @@ export default function SignUpBody() {
         <br />
         <div className='google-login' >
           <img src={google} alt="google" className='google-img' />
-          <p className='login-google-text' >Continue with google</p>
+          <p className='login-google-text' >Sign up with google</p>
         </div>
         <div className='login-line' >
         </div>

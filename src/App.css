@@ -231,3 +231,99 @@
 .login-not-account:hover {
   cursor: pointer;
 }
+
+.dashboard-photo {
+  width: 30px;
+}
+.dash-nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #0065ff;
+  color: white;
+}
+.dash-nav-links {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 1rem;
+  align-items: center;
+}
+.dash-nav-links p {
+  padding: 2px 8px;
+}
+.dashboard-container {
+  display: grid;
+  grid-template-areas: 'sidebar main';
+  grid-template-columns: 0.5fr 3fr;
+}
+.sidebar {
+  background-color: rgb(108, 108, 214);
+  height: 90.9vh;
+  padding: 5px;
+}
+.dashboard {
+  height: 100vh;
+}
+.add-logo {
+  width: 20px;
+}
+.logo-container {
+  display: flex;
+  flex-direction: row;
+  border: 1px dotted white;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+.logo-container p {
+  padding-left: 8px;
+  color: white;
+}
+.side-projects h4 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  color: white;
+}
+.project {
+  display: flex;
+  justify-content: space-around;
+  margin: 5px;
+  background-color: whitesmoke;
+  padding: 5px;
+  text-align: center;
+  border-radius: 3px;
+}
+.delete-icon {
+  width: 20px;
+}
+
+@media screen and (min-width: 1400px) {
+  .welcome-container {
+    margin-top: 200px;
+  }
+  .card {
+    margin-top: 50px;
+  }
+  .welcome-container-para {
+    margin-left: 0px;
+  }
+  .container-button {
+    width: 350px;
+  }
+  .login-image-container {
+    margin-left: 780px;
+  }
+  .login-form-container {
+    margin-left: 710px;
+    width: 320px;
+  }
+  .google-img {
+    width: 19px;
+  }
+  .google-login {
+    margin-left: 35px;
+  }
+  .login-google-text {
+    font-size: 10px;
+  }
+}

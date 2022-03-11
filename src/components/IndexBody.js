@@ -1,6 +1,10 @@
 import card from '../images/—Pngtree—team work web concept people_5335944.png';
+import { useHistory } from 'react-router-dom';
 
 function IndexBody() {
+
+  const history = useHistory();
+
   return (
     <div className='index-body-container' >
       <div className='left-bar' >
