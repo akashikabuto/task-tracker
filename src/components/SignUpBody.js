@@ -6,6 +6,9 @@ import Input from './Input';
 
 export default function SignUpBody() {
 
+
+  let url = `http://localhost:3000`;
+
   const history = useHistory();
 
   const initialState = {
@@ -22,12 +25,22 @@ export default function SignUpBody() {
     setState({ ...state, [e.target.name]: e.target.value });
   }
 
-  function handleSignUp(e) {
+  async function handleSignUp(e) {
     e.preventDefault();
-    let user = [];
-    user.push(state);
-    localStorage.setItem('user', JSON.stringify(user));
-    document.getElementById('sign-up-form').reset();
+    const config = {
+      method: "POST",
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(state)
+    };
+    try {
+      const res = await (await fetch(`${url}/users`, config)).json();
+      console.log('res', res);
+    } catch (error) {
+      console.log("error", error);
+    }
+
   }
 
   return (

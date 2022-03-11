@@ -1,11 +1,24 @@
+import { useEffect, useState } from 'react';
 import Input from './Input';
 import logo from '../images/productivity.png';
 import google from '../images/google.png';
 import { useHistory } from 'react-router-dom';
 
+
 export default function LoginBody() {
 
   const history = useHistory();
+
+  const initialState = {
+    email: "",
+    password: ""
+  };
+
+  const [state, setState] = useState(initialState);
+
+  function OnChange(e) {
+    setState({ ...state, [e.target.name]: e.target.value });
+  }
 
   return (
     <>
@@ -16,8 +29,8 @@ export default function LoginBody() {
       <div className='login-form-container' >
         <p className='tracker-t' >Log in to tracker</p>
         <form>
-          <Input placeholder='Email' type="email" />
-          <Input placeholder="Password" type="password" />
+          <Input placeholder='Email' type="email" handleOnchange={OnChange} name="email" />
+          <Input placeholder="Password" type="password" handleOnchange={OnChange} name="password" />
           <button className='login-button' >Login</button>
         </form>
         <p className='login-not-account'>Forgot password?</p>
