@@ -17,7 +17,7 @@ function IndexBar() {
       </div>
       <div className='index-bar-buttons' >
         <button className='index-login-button' onClick={() => goToLogin()}  >Login</button>
-        <button className='index-sign-up-button' >Sign up</button>
+        <button className='index-sign-up-button' onClick={() => history.push('/signup')}  >Sign up</button>
       </div>
     </div>
   );

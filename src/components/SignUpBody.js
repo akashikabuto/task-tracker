@@ -46,8 +46,8 @@ export default function SignUpBody() {
   return (
     <>
       <div className='login-image-container' >
-        <img src={logo} alt="logo" className='nav-logo' />
-        <p className='index-tilte' >Tracker</p>
+        <img src={logo} alt="logo" className='nav-logo' onClick={() => history.push('/')} />
+        <p className='index-tilte' onClick={() => history.push('/')} >Tracker</p>
       </div>
       <div className='login-form-container' >
         <p className='tracker-t' >Register to tracker</p>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Input from './Input';
 import logo from '../images/productivity.png';
 import google from '../images/google.png';
@@ -7,31 +7,74 @@ import { useHistory } from 'react-router-dom';
 
 export default function LoginBody() {
 
+  let url = `http://localhost:7000`;
+
   const history = useHistory();
 
   const initialState = {
     email: "",
-    password: ""
+    password: "",
+    message: ""
   };
 
   const [state, setState] = useState(initialState);
+  const [loading, setLoading] = useState(false);
 
   function OnChange(e) {
     setState({ ...state, [e.target.name]: e.target.value });
   }
 
+  async function login(e) {
+    e.preventDefault();
+    setLoading(true);
+    console.log(state);
+    try {
+      const config = {
+        method: "POST",
+        headers: {
+          'Content-type': "application/json",
+        },
+        body: JSON.stringify(state)
+      };
+      const res = await (await fetch(`${url}/api/auth/login`, config)).json();
+      if (res.status === 200) {
+        localStorage.setItem('token', res.token);
+        history.push('/dashboard');
+      }
+      if (res.status === 203) {
+        setLoading(false);
+        setState({ ...state, message: res.message });
+        setTimeout(() => {
+          setState({ ...state, message: '' });
+        }, 4000);
+      }
+      if (res.status === 205) {
+        setLoading(false);
+        setState({ ...state, message: res.message });
+        setTimeout(() => {
+          setState({ ...state, message: '' });
+        }, 4000);
+      }
+    } catch (error) {
+      setLoading(false);
+      console.log("error", error);
+    }
+  }
+
   return (
     <>
       <div className='login-image-container' >
-        <img src={logo} alt="logo" className='nav-logo' />
-        <p className='index-tilte' >Tracker</p>
+        <img src={logo} alt="logo" className='nav-logo' onClick={() => history.push('/')} />
+        <p className='index-tilte' onClick={() => history.push('/')} >Tracker</p>
       </div>
       <div className='login-form-container' >
         <p className='tracker-t' >Log in to tracker</p>
-        <form>
+        {state.message ? <p style={{ color: "red" }} > {state.message} </p> : ""}
+        <form onSubmit={login} >
           <Input placeholder='Email' type="email" handleOnchange={OnChange} name="email" />
           <Input placeholder="Password" type="password" handleOnchange={OnChange} name="password" />
-          <button className='login-button' >Login</button>
+          {loading ? <button className='login-button' disabled >Loading....</button> :
+            <button className='login-button' >Login</button>}
         </form>
         <p className='login-not-account'>Forgot password?</p>
         <br />
