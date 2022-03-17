@@ -20,6 +20,7 @@
 .index-bar {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .index-bar-buttons {
   display: flex;
@@ -440,6 +441,12 @@
 .add-link {
   text-decoration: none;
   padding-left: 5px;
+}
+
+.switch-select {
+  border: 1px solid #0065ff;
+  padding: 5px;
+  outline-color: #0065ff;
 }
 
 @media screen and (min-width: 1400px) {

@@ -14,7 +14,7 @@ export default function OneProject() {
   const dispatch = useDispatch();
 
   const { oneProject } = useSelector(state => state.tasks);
-  console.log('oneProject', oneProject);
+
 
   useEffect(() => {
     if (!token) {
