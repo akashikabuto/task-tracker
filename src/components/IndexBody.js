@@ -1,15 +1,20 @@
+import { useTranslation } from 'react-i18next';
 import card from '../images/—Pngtree—team work web concept people_5335944.png';
 
+
 function IndexBody() {
+
+  const { t } = useTranslation();
+
   return (
     <div className='index-body-container' >
       <div className='left-bar' >
         <div className='welcome-container' >
           <h3 className='welcome-container-title' >Tracker</h3>
-          <p className='welcome-container-para' >Work in team and work faster and smarter</p>
+          <p className='welcome-container-para' >{t("sloganText")} </p>
           <div className='form-container' >
             <input placeholder='Email' className='container-input' />
-            <button className='container-button' >Sign up it's free</button>
+            <button className='container-button' > {t("signUpButtonText")} </button>
           </div>
         </div>
       </div>
