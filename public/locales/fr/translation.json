@@ -1,3 +1,14 @@
 {
-  "sloganText":"Travaillez en équipe et travaillez plus vite et intelligemment"
+  "sloganText":"Travaillez en équipe vite et intelligemment",
+  "signUpButtonText":"Inscrivez-vous, c'est gratuit",
+  "loginText":"Connecte",
+  "signupText":"Inscrire",
+  "LoginTrackerText":"Connecte sur Trackeur",
+  "loading":"Chargement......",
+  "Login with google":"Connecte avec google",
+  "Do not have account?":"Pas de compte ?",
+  "Register":"S'inscrire",
+  "Register to tracker":"Inscrivez-vous sur trackeur",
+  "Sign up with google":"Inscrire avec google",
+  "Have account?":"Avez-vous un compte?"
 }
