@@ -4,6 +4,7 @@ import logo from '../images/productivity.png';
 import google from '../images/google.png';
 import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import '../css/loginBody.css';
 
 
 
@@ -72,7 +73,6 @@ export default function LoginBody() {
     //eslint-disable-next-line
   }, [locale]);
 
-  console.log("locale", locale);
 
   return (
     <>

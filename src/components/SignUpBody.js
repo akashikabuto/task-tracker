@@ -4,6 +4,7 @@ import google from '../images/google.png';
 import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Input from './Input';
+import '../css/loginBody.css';
 
 export default function SignUpBody() {
 

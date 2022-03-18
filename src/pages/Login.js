@@ -1,4 +1,5 @@
 import LoginBody from "../components/LoginBody";
+import '../css/loginPage.css';
 
 function Login() {
   return (
