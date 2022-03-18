@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import card from '../images/—Pngtree—team work web concept people_5335944.png';
+import '../css/indexBody.css';
 
 
 function IndexBody() {

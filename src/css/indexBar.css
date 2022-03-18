@@ -1,0 +1,84 @@
+.index-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.index-logo-bar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 5px;
+}
+.index-bar-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 1rem;
+}
+.index-login-button {
+  background: whitesmoke;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 2px;
+  width: fit-content;
+  text-transform: uppercase;
+  margin: 10px;
+  color: #0065ff;
+}
+.index-sign-up-button {
+  background: #0065ff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 2px;
+  width: fit-content;
+  text-transform: uppercase;
+  margin: 10px;
+  color: white;
+}
+.nav-logo {
+  width: 50px;
+}
+.index-tilte {
+  font-weight: bold;
+  text-transform: uppercase;
+  padding-left: 10px;
+  font-size: 20px;
+  color: #0065ff;
+}
+
+@media only screen and (max-width: 480px) {
+  .index-bar {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px;
+  }
+  .index-login-button {
+    display: flex;
+    margin: 5px;
+    padding: 7px;
+    width: 100%;
+  }
+  .index-logo-bar {
+    width: 100%;
+  }
+  .index-bar-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+  }
+  .index-sign-up-button {
+    display: flex;
+    margin: 5px;
+    padding: 7px;
+    width: 100%;
+  }
+  .nav-logo {
+    width: 25px;
+  }
+  .index-tilte {
+    font-weight: bold;
+    text-transform: uppercase;
+    padding-left: 10px;
+    font-size: 15px;
+    color: #0065ff;
+  }
+}

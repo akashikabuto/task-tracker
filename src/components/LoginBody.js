@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Input from './Input';
 import logo from '../images/productivity.png';
 import google from '../images/google.png';
 import { useHistory } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
 
 
 export default function LoginBody() {
@@ -16,6 +18,8 @@ export default function LoginBody() {
     password: "",
     message: ""
   };
+
+  const { t, i18n } = useTranslation();
 
   const [state, setState] = useState(initialState);
   const [loading, setLoading] = useState(false);
@@ -61,6 +65,15 @@ export default function LoginBody() {
     }
   }
 
+  const locale = localStorage.getItem("lang") || "eng";
+
+  useEffect(() => {
+    i18n.changeLanguage(locale);
+    //eslint-disable-next-line
+  }, [locale]);
+
+  console.log("locale", locale);
+
   return (
     <>
       <div className='login-image-container' >
@@ -68,13 +81,13 @@ export default function LoginBody() {
         <p className='index-tilte' onClick={() => history.push('/')} >Tracker</p>
       </div>
       <div className='login-form-container' >
-        <p className='tracker-t' >Log in to tracker</p>
+        <p className='tracker-t' >{t("LoginTrackerText")} </p>
         {state.message ? <p style={{ color: "red" }} > {state.message} </p> : ""}
         <form onSubmit={login} >
           <Input placeholder='Email' type="email" handleOnchange={OnChange} name="email" />
           <Input placeholder="Password" type="password" handleOnchange={OnChange} name="password" />
-          {loading ? <button className='login-button' disabled >Loading....</button> :
-            <button className='login-button' >Login</button>}
+          {loading ? <button className='login-button' disabled >{t("Loading....")}</button> :
+            <button className='login-button' >{t("loginText")}</button>}
         </form>
         <p className='login-not-account'>Forgot password?</p>
         <br />
@@ -82,12 +95,12 @@ export default function LoginBody() {
         <br />
         <div className='google-login' >
           <img src={google} alt="google" className='google-img' />
-          <p className='login-google-text' >Login with google</p>
+          <p className='login-google-text' > {t("Login with google")} </p>
         </div>
         <div className='login-line' >
         </div>
         <div>
-          <p className='login-not-account' onClick={() => history.push('/signup')}  >Do not have account?</p>
+          <p className='login-not-account' onClick={() => history.push('/signup')}> {t("Do not have account?")} </p>
         </div>
       </div>
     </>
