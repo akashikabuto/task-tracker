@@ -1,6 +1,7 @@
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { toogleSideBar } from '../redux/actions/actions';
+import '../css/taskContainer.css';
 
 export default function AllTasks({ id, name }) {
 

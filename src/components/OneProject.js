@@ -5,6 +5,7 @@ import { viewOneProject } from "../redux/actions/actions";
 import ProjectCards from "./ProjectCards";
 import ProjectChart from "./ProjectChart";
 import ProjectDetails from "./ProjectDetails";
+import '../css/oneProject.css';
 
 export default function OneProject() {
 

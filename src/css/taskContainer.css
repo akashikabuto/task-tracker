@@ -1,0 +1,13 @@
+.task-container {
+  background-color: #0065ff;
+  color: white;
+  margin: 5px;
+  padding: 7px;
+  border-radius: 5px;
+  text-align: center;
+  padding: 10px;
+}
+
+.task-container p:hover {
+  cursor: pointer;
+}

@@ -1,0 +1,37 @@
+.project-cards {
+  display: flex;
+}
+.project-card {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  padding: 10px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  align-items: center;
+  margin: 5px;
+  height: 5rem;
+  color: blue;
+  border-left: 3px solid blue;
+}
+.cards-image {
+  font-size: 50px;
+}
+
+@media only screen and (max-width: 480px) {
+  .project-cards {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .project-card {
+    display: flex;
+    width: 100%;
+    height: 50%;
+  }
+  .project-card p {
+    font-size: 14px;
+  }
+  .cards-image {
+    font-size: 25px;
+  }
+}

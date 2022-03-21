@@ -1,0 +1,28 @@
+.stats {
+  text-align: center;
+  margin: 8px;
+  padding: 10px;
+}
+.cards-container {
+  display: flex;
+}
+.cards {
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  width: 50%;
+  padding: 20px;
+  margin: 5px;
+  border-left: 0.3rem solid blue;
+  height: 5rem;
+}
+
+@media only screen and (max-width: 480px) {
+  .cards-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .cards {
+    width: 100%;
+  }
+}

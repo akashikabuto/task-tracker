@@ -1,0 +1,38 @@
+.add-task-header {
+  text-align: center;
+  margin: 5px;
+}
+.add-task-form {
+  width: 25%;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.input-flex {
+  display: flex;
+  flex-direction: column;
+}
+.input-flex label {
+  color: black;
+  padding-left: 18px;
+  font-weight: bold;
+}
+
+.add-button {
+  background: #0065ff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 2px;
+  width: fit-content;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  margin-left: 19px;
+  color: white;
+  width: 80%;
+}
+
+@media only screen and (max-width: 480px) {
+  .add-task-form {
+    width: 100%;
+  }
+}

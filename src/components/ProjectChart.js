@@ -15,9 +15,10 @@ export default function ProjectChart() {
       height={200}
       style={{
         labels: {
-          fontSize: 8
+          fontSize: 11
         }
       }}
+
       labels={({ datum }) => `${datum.x}: ${datum.y}`}
     />
   );

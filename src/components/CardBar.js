@@ -1,4 +1,4 @@
-import React from 'react';
+import '../css/cardBar.css';
 
 export default function CardBar() {
   return (
@@ -19,7 +19,8 @@ export default function CardBar() {
           <div>8</div>
           <div>completed</div>
         </div>
-      </div></>
+      </div>
+    </>
 
   );
 }

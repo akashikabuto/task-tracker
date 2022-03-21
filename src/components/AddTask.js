@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addProject } from '../redux/actions/actions';
 import Input from '../components/Input';
+import '../css/addTask.css';
 
 
 
@@ -22,7 +23,7 @@ export default function AddTask() {
   function handleCreateProject(e) {
     e.preventDefault();
     dispatch(addProject(token, state));
-    document.getElementById('add-task').reset();
+    setState({ ...state, [e.target.name]: '' });
   }
 
   function OnChange(e) {
@@ -31,19 +32,19 @@ export default function AddTask() {
 
 
   return (
-    <div className='add-task-container' >
+    <>
       <div className='add-task-header' >
         <h3>ADD TASK</h3>
       </div>
       <div className='add-task-form' >
-        <form onSubmit={handleCreateProject} id="add-task" >
+        <form onSubmit={handleCreateProject} >
           <div className='input-flex' >
             <label>Name</label>
             <Input placeholder='project name' name='projectName' handleOnchange={OnChange} />
-            <button className='login-button'>Add</button>
+            <button className='add-button'>Add</button>
           </div>
         </form>
       </div>
-    </div>
+    </>
   );
 }
