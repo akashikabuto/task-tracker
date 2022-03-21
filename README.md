@@ -12,7 +12,7 @@ The project is built using:
 
 ### Cloning the project
 
-- Simply [Clone](https://github.com/akashikabuto/Focus-fronted-repo.git) The project here
+- Simply [Clone](http://182.75.25.55/nseko/task-tracker-fronted.git) The project here
 - Use git bash:
   1.  First [download](https://git-scm.com/downloads) git bash
   2.  Install it
