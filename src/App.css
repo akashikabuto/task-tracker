@@ -53,27 +53,9 @@
 .dashboard-photo {
   width: 30px;
 }
-.dash-nav {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  background-color: #0065ff;
-  color: white;
-  align-items: center;
-}
-.dash-nav-links {
-  display: flex;
-  justify-content: space-between;
-  margin: 0 1rem;
-  align-items: center;
-}
-.dash-nav-links p {
-  padding: 2px 8px;
-}
+
 .dashboard-container {
-  display: grid;
-  grid-template-areas: 'sidebar main';
-  grid-template-columns: 0.7fr 3fr;
+  display: flex;
 }
 .sidebar {
   /* background-color: rgb(108, 108, 214); */
@@ -81,9 +63,15 @@
   height: 90.9vh;
   padding: 5px;
   overflow-y: auto;
+  position: fixed;
+  width: 240px;
 }
 .main {
   padding: 10px;
+  position: fixed;
+  right: 0%;
+  width: calc(100% - 240px);
+  height: 100%;
 }
 .dashboard {
   height: 100vh;
@@ -163,13 +151,6 @@
   font-weight: bold;
 }
 
-.dash-nav-bar-logo-text {
-  font-weight: bold;
-  text-decoration: none;
-  font-size: 20px;
-  color: white;
-}
-
 .task-container {
   background-color: #0065ff;
   color: white;
@@ -185,7 +166,7 @@
   color: white;
 }
 
-.menu.open {
+/* .menu.open {
   transform: translateX(70%);
   transition: transform 0.3s cubic-bezier(0, 0.52, 0, 1);
 }
@@ -194,7 +175,7 @@
 }
 .menu li:hover {
   cursor: pointer;
-}
+} */
 
 .project-cards {
   display: flex;
@@ -245,6 +226,30 @@
 .add-link {
   text-decoration: none;
   padding-left: 5px;
+}
+
+@media only screen and (max-width: 480px) {
+  .dashboard-container {
+    display: flex;
+    width: 100%;
+  }
+  .main {
+    width: 100%;
+  }
+  .sidebar {
+    width: 70%;
+    transform: translateX(-100%);
+    z-index: 100;
+    transition: transform 0.3s cubic-bezier(0, 0.52, 0, 1);
+  }
+  .open {
+    transform: translateX(0%);
+    transition: transform 0.3s cubic-bezier(0, 0.52, 0, 1);
+  }
+  .dashboard {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 @media screen and (min-width: 1400px) {

@@ -61,4 +61,21 @@ export const viewOneProject = (token, id) => async (dispatch, getState) => {
   }
 };
 
+export const toogleSideBar = () => async (dispatch, getState) => {
+
+  const { tasks } = getState();
+
+  const { sideBarStatus } = tasks;
+
+  let status;
+
+  sideBarStatus ? status = false : status = true;
+
+  return dispatch({
+    type: types.TOOGLE_SIDEBAR,
+    payload: status
+  });
+};
+
+
 

@@ -1,16 +1,19 @@
-import { NavLink } from "react-router-dom";
-
+import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { toogleSideBar } from '../redux/actions/actions';
 
 export default function AllTasks({ id, name }) {
 
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  function navigateToTaskaddTask(id) {
+    dispatch(toogleSideBar());
+    history.push(`/dashboard/project/${id}`);
+  }
   return (
     <div key={id} className="task-container"  >
-      <NavLink
-        to={`/dashboard/project/${id}`}
-        className="project-link"
-      >
-        <p>{name} </p>
-      </NavLink>
+      <p onClick={() => navigateToTaskaddTask(id)}>{name} </p>
     </div>
   );
 }

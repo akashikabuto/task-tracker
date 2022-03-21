@@ -28,7 +28,7 @@ export default function OneProject() {
 
 
   return (
-    <div>
+    <>
       <ProjectCards />
       <div>
         {oneProject.map(({ id, project_name }) => {
@@ -42,6 +42,6 @@ export default function OneProject() {
       <div className="chart" >
         <ProjectChart />
       </div>
-    </div>
+    </>
   );
 }

@@ -2,7 +2,8 @@ import * as types from '../actions/types';
 
 const initialState = {
   projects: [],
-  oneProject: []
+  oneProject: [],
+  sideBarStatus: false
 };
 
 export const taskReducer = (state = initialState, { type, payload }) => {
@@ -17,7 +18,11 @@ export const taskReducer = (state = initialState, { type, payload }) => {
         ...state,
         oneProject: payload
       };
-
+    case types.TOOGLE_SIDEBAR:
+      return {
+        ...state,
+        sideBarStatus: payload
+      };
     default:
       return state;
   }
