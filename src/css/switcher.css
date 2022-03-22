@@ -1,0 +1,16 @@
+.switch-select {
+  border: 1px solid #0065ff;
+  padding: 5px;
+  outline-color: #0065ff;
+}
+@media only screen and (max-width: 480px) {
+  .switch-select {
+    width: 50%;
+    margin-top: 5px;
+  }
+  .switcher {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+}
