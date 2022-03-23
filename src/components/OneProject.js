@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 import { viewOneProject } from "../redux/actions/actions";
 import ProjectCards from "./ProjectCards";
 import ProjectChart from "./ProjectChart";
@@ -13,10 +14,7 @@ export default function OneProject() {
   const history = useHistory();
   const { id } = useParams();
   const dispatch = useDispatch();
-
   const { oneProject } = useSelector(state => state.tasks);
-
-
   useEffect(() => {
     if (!token) {
       history.push('/login');
@@ -26,6 +24,13 @@ export default function OneProject() {
     }
     //eslint-disable-next-line
   }, [id]);
+  const { t, i18n } = useTranslation();
+  const locale = localStorage.getItem("lang") || "eng";
+
+  useEffect(() => {
+    i18n.changeLanguage(locale);
+    //eslint-disable-next-line
+  }, [locale]);
 
 
   return (
@@ -37,7 +42,7 @@ export default function OneProject() {
         })}
       </div>
       <div className="project-status" >
-        <p>Status :</p>
+        <p>{t("Status")} :</p>
         <p className="progress" >In progress</p>
       </div>
       <div className="chart" >

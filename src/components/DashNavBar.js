@@ -6,6 +6,7 @@ import { FaBars } from "react-icons/fa";
 import { useDispatch } from 'react-redux';
 import { toogleSideBar } from '../redux/actions/actions';
 import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router-dom';
 
 
 
@@ -13,11 +14,17 @@ export default function DashNavBar() {
 
   const { t, i18n } = useTranslation();
   const locale = localStorage.getItem("lang") || "eng";
+  const history = useHistory();
 
   useEffect(() => {
     i18n.changeLanguage(locale);
     //eslint-disable-next-line
   }, [locale]);
+
+  function logOut() {
+    localStorage.removeItem("token");
+    history.push('/login');
+  }
 
   const dispatch = useDispatch();
   const toogleSideBarState = () => dispatch(toogleSideBar());
@@ -35,7 +42,7 @@ export default function DashNavBar() {
       <div className='dash-nav-links'>
         <p>Akashi</p>
         <p><img src={userLogo} alt="userLogo" className='dashboard-photo' /></p>
-        <p>{t("Log_out")}</p>
+        <p onClick={logOut} >{t("Log_out")}</p>
       </div>
     </div>
   );
