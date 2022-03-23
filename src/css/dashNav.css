@@ -16,6 +16,10 @@
   padding: 2px 8px;
 }
 
+.dash-nav-links p:hover {
+  cursor: pointer;
+}
+
 .dash-nav-bar-logo-text {
   font-weight: bold;
   text-decoration: none;
