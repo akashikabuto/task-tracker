@@ -10,5 +10,13 @@
   "Register":"Register",
   "Register to tracker":"Register to tracker",
   "Sign up with google":" google",
-  "Have account?":"Have account ?"
+  "Have account?":"Have account ?",
+  "addProject":"add project",
+  "Projects":"Projects",
+  "ADD_PROJECT":"ADD PROJECT",
+  "Project_name":"Name",
+  "Add":"Add",
+  "project_stats":"STATS",
+  "completed":"completed",
+  "Log_out":"Log out"
 }
