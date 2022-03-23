@@ -1,11 +1,22 @@
+import { useEffect } from "react";
 import { VictoryPie } from "victory";
+import { useTranslation } from 'react-i18next';
 
 export default function ProjectChart() {
+
+  const { t, i18n } = useTranslation();
+  const locale = localStorage.getItem("lang") || "eng";
+
+  useEffect(() => {
+    i18n.changeLanguage(locale);
+    //eslint-disable-next-line
+  }, [locale]);
+
   return (
     <VictoryPie data={[
-      { x: "Contributors", y: 25 },
-      { x: "Issues", y: 40 },
-      { x: "Tasks", y: 15 }
+      { x: `${t("Collaborators")}`, y: 25 },
+      { x: `${t("Issues")}`, y: 40 },
+      { x: `${t("Tasks")}`, y: 15 }
     ]}
       animate={{
         duration: 2000

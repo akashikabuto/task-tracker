@@ -13,10 +13,15 @@
   "Have account?":"Avez-vous un compte?",
   "addProject":"ajouter un projet",
   "Projects":"Projets",
-  "ADD_PROJECT":"AJOUTER PROJET",
+  "ADD_PROJECT":"AJOUTER UN PROJET",
   "Project_name":"Nom",
   "Add":"Ajouter",
   "project_stats":"STATISTIQUES",
   "completed":"complété",
-  "Log_out":"déconnecté"
+  "Log_out":"déconnecté",
+  "Collaborators":"Collaborateurs",
+  "Chat room":"discuter",
+  "Tasks":"Tâches",
+  "Status":"Statut",
+  "Issues":"problèmes"
 }

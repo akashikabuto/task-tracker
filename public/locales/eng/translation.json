@@ -18,5 +18,10 @@
   "Add":"Add",
   "project_stats":"STATS",
   "completed":"completed",
-  "Log_out":"Log out"
+  "Log_out":"Log out",
+  "Collaborators":"Collaborators",
+  "Chat room":"Chat room",
+  "Tasks":"Tasks",
+  "Status":"Status",
+  "Issues":"Issues"
 }
