@@ -6,9 +6,12 @@ import CardBar from "../components/CardBar";
 
 
 
+
 export default function Dashboard() {
+
   const token = localStorage.getItem('token');
   const history = useHistory();
+
 
   useEffect(() => {
     if (!token) {

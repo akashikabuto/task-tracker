@@ -10,5 +10,13 @@
   "Register":"S'inscrire",
   "Register to tracker":"Inscrivez-vous sur trackeur",
   "Sign up with google":"google",
-  "Have account?":"Avez-vous un compte?"
+  "Have account?":"Avez-vous un compte?",
+  "addProject":"ajouter un projet",
+  "Projects":"Projets",
+  "ADD_PROJECT":"AJOUTER PROJET",
+  "Project_name":"Nom",
+  "Add":"Ajouter",
+  "project_stats":"STATISTIQUES",
+  "completed":"complété",
+  "Log_out":"déconnecté"
 }
