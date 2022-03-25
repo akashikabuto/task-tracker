@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { toogleSideBar } from '../redux/actions/actions';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
+import Switcher from './Switcher';
 
 
 
@@ -39,6 +40,7 @@ export default function DashNavBar() {
           Tracker
         </NavLink>
       </div>
+      <Switcher />
       <div className='dash-nav-links'>
         <p>Akashi</p>
         <p><img src={userLogo} alt="userLogo" className='dashboard-photo' /></p>
