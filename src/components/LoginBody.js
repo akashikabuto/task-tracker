@@ -86,7 +86,7 @@ export default function LoginBody() {
         <form onSubmit={login} >
           <Input placeholder='Email' type="email" handleOnchange={OnChange} name="email" />
           <Input placeholder="Password" type="password" handleOnchange={OnChange} name="password" />
-          {loading ? <button className='login-button' disabled >{t("Loading....")}</button> :
+          {loading ? <button className='login-button' disabled >{t("loading")}</button> :
             <button className='login-button' >{t("loginText")}</button>}
         </form>
         <p className='login-not-account'>Forgot password?</p>
