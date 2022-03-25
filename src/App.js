@@ -9,12 +9,14 @@ import { AuthorizationChecker as isLoggedIn } from './components/Private';
 
 
 
+
 const IndexPage = lazy(() => import('./pages/Index.js'));
 const LoginPage = lazy(() => import('./pages/Login.js'));
 const SignUpPage = lazy(() => import('./pages/SignUp.js'));
 const ProjectPage = lazy(() => import('./pages/Project.js'));
 const AddTaskPage = lazy(() => import('./pages/AddTaskPage.js'));
 const DashboardPage = lazy(() => import('./pages/Dashboard.js'));
+const ChatroomPage = lazy(() => import('./pages/Chatroom'));
 
 
 function App() {
@@ -28,6 +30,7 @@ function App() {
           <Route path="/dashboard" component={isLoggedIn(DashboardPage)} exact />
           <Route path="/dashboard/addTask" component={isLoggedIn(AddTaskPage)} exact />
           <Route path="/dashboard/project/:id" component={isLoggedIn(ProjectPage)} exact />
+          <Route path='/dashboard/chat' component={isLoggedIn(ChatroomPage)} exact />
           <Route path='*' component={NotFound} exact />
         </Switch>
       </Provider>

@@ -1,0 +1,15 @@
+.chatroom {
+  height: 100vh;
+}
+
+.chatroom-container {
+  display: flex;
+}
+
+.chats {
+  position: fixed;
+  right: 0%;
+  width: calc(100% - 240px);
+  height: 100%;
+  background-color: white;
+}

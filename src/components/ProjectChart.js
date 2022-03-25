@@ -1,6 +1,11 @@
 import { useEffect } from "react";
-import { VictoryPie } from "victory";
 import { useTranslation } from 'react-i18next';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Pie } from 'react-chartjs-2';
+
+
+ChartJS.register(ArcElement, Tooltip, Legend);
+
 
 export default function ProjectChart() {
 
@@ -12,25 +17,28 @@ export default function ProjectChart() {
     //eslint-disable-next-line
   }, [locale]);
 
-  return (
-    <VictoryPie data={[
-      { x: `${t("Collaborators")}`, y: 25 },
-      { x: `${t("Issues")}`, y: 40 },
-      { x: `${t("Tasks")}`, y: 15 }
-    ]}
-      animate={{
-        duration: 2000
-      }}
-      colorScale={["#0065ff", "rgb(119, 99, 99)", "#16243a"]}
-      width={200}
-      height={200}
-      style={{
-        labels: {
-          fontSize: 11
-        }
-      }}
+  const Data = {
+    labels: [`${t("Collaborators")}`, `${t("Tasks")}`, `${t("Issues")}`],
+    datasets: [
+      {
+        data: [12, 19, 3],
+        backgroundColor: [
+          'whitesmoke',
+          'blue',
+          'red'
+        ],
+        borderColor: [
+          'whitesmoke',
+          'blue',
+          'red'
+        ],
+        borderWidth: 0.3,
+      },
+    ],
+  };
 
-      labels={({ datum }) => `${datum.x}: ${datum.y}`}
-    />
+
+  return (
+    <Pie data={Data} />
   );
 }

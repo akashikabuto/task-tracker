@@ -1,7 +1,19 @@
-import React from 'react';
+import ChatGroupPeople from '../components/ChatGroupPeople';
+import Chats from '../components/Chats';
+import DashNavBar from '../components/DashNavBar';
+import '../css/Chatroom.css';
 
 export default function Chatroom() {
   return (
-    <div>Chatroom</div>
+    <div className='chatroom' >
+      <DashNavBar />
+      <div className='chatroom-container' >
+        <ChatGroupPeople />
+        <div className='chats' >
+          <Chats />
+        </div>
+      </div>
+    </div>
+
   );
 }

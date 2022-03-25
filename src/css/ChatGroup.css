@@ -1,0 +1,40 @@
+.chat-people {
+  background-color: blue;
+  height: 100%;
+  padding: 10px;
+  overflow-y: auto;
+  position: fixed;
+  width: 240px;
+}
+
+.chat-people h4 {
+  text-align: center;
+  color: whitesmoke;
+  margin-bottom: 20px;
+}
+.chat-people h3 {
+  text-align: center;
+  color: whitesmoke;
+  margin-bottom: 20px;
+  padding: 5px;
+  text-transform: uppercase;
+  width: fit-content;
+  border-bottom: 1px solid whitesmoke;
+}
+.ch-people {
+  display: flex;
+  flex-direction: row;
+  margin: 8px;
+  padding: 5px;
+  align-items: center;
+  border-radius: 5px;
+}
+.ch-people p {
+  padding-left: 9px;
+  color: whitesmoke;
+  font-weight: 700;
+}
+
+.user-pic {
+  width: 40px;
+}
