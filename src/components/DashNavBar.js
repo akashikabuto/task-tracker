@@ -40,11 +40,11 @@ export default function DashNavBar() {
           Tracker
         </NavLink>
       </div>
-      <Switcher />
       <div className='dash-nav-links'>
         <p>Akashi</p>
         <p><img src={userLogo} alt="userLogo" className='dashboard-photo' /></p>
         <p onClick={logOut} >{t("Log_out")}</p>
+        <Switcher />
       </div>
     </div>
   );
