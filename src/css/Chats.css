@@ -1,0 +1,25 @@
+.messages {
+  padding: 10px;
+  position: relative;
+}
+.m1 {
+  background-color: whitesmoke;
+  width: fit-content;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 5px;
+}
+.m2 {
+  display: flex;
+  justify-content: space-between;
+  background-color: blue;
+  width: fit-content;
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+  margin: 5px;
+}
+.right-wrapper {
+  display: flex;
+  justify-content: flex-end;
+}

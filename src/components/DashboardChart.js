@@ -3,11 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 
-
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-
-export default function ProjectChart() {
+export default function DashboardChart() {
 
   const { t, i18n } = useTranslation();
   const locale = localStorage.getItem("lang") || "eng";
@@ -18,7 +16,7 @@ export default function ProjectChart() {
   }, [locale]);
 
   const Data = {
-    labels: [`${t("Collaborators")}`, `${t("Tasks")}`, `${t("Issues")}`],
+    labels: [`${t("Projects")}`, `${t("Tasks")}`, `${t("Collaborators")}`],
     datasets: [
       {
         data: [12, 19, 3],
@@ -36,7 +34,6 @@ export default function ProjectChart() {
       },
     ],
   };
-
 
   return (
     <Pie data={Data} />
