@@ -1,16 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DashNavBar from "../components/DashNavBar";
 import Task from "../components/Task";
 import Col from "../components/Col";
 import DropWrapper from "../components/DropWrapper";
 import { statuses, data } from '../data/index';
+import { useTranslation } from 'react-i18next';
 import '../css/taskPage.css';
 
 
 export default function TaskPage() {
 
   const [items, setItems] = useState(data);
-
+  const locale = localStorage.getItem("lang") || "eng";
   const onDrop = (item, monitor, status) => {
     const mapping = statuses.find(si => si.status === status);
 
@@ -21,6 +22,13 @@ export default function TaskPage() {
       return [...newItems];
     });
   };
+
+  const { t, i18n } = useTranslation();
+
+  useEffect(() => {
+    i18n.changeLanguage(locale);
+    //eslint-disable-next-line
+  }, [locale]);
 
   const moveItem = (dragIndex, hoverIndex) => {
     const item = items[dragIndex];
@@ -34,6 +42,9 @@ export default function TaskPage() {
   return (
     <div>
       <DashNavBar />
+      <div className="button-wrapper" >
+        <button className="add-button" >{t("AddTask")}</button>
+      </div>
       <div className="row" >
         {statuses.map(s => {
           return (
