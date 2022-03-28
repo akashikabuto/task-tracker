@@ -1,11 +1,12 @@
-import { lazy, Suspense } from 'react';
+import { lazy } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './App.css';
 import { Provider } from 'react-redux';
 import { store } from './redux';
-import Loader from './components/Loader';
 import NotFound from './components/NotFound';
 import { AuthorizationChecker as isLoggedIn } from './components/Private';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend as Backend } from 'react-dnd-html5-backend';
 
 
 
@@ -17,12 +18,13 @@ const ProjectPage = lazy(() => import('./pages/Project.js'));
 const AddTaskPage = lazy(() => import('./pages/AddTaskPage.js'));
 const DashboardPage = lazy(() => import('./pages/Dashboard.js'));
 const ChatroomPage = lazy(() => import('./pages/Chatroom'));
+const TaskPage = lazy(() => import('./pages/TaskPage'));
 
 
 function App() {
   return (
-    <Suspense fallback={<Loader />} >
-      <Provider store={store} >
+    <Provider store={store} >
+      <DndProvider backend={Backend} >
         <Switch>
           <Route path="/" component={IndexPage} exact />
           <Route path="/login" component={LoginPage} exact />
@@ -31,10 +33,11 @@ function App() {
           <Route path="/dashboard/addTask" component={isLoggedIn(AddTaskPage)} exact />
           <Route path="/dashboard/project/:id" component={isLoggedIn(ProjectPage)} exact />
           <Route path='/dashboard/chat' component={isLoggedIn(ChatroomPage)} exact />
+          <Route path='/dashboard/tasks' component={isLoggedIn(TaskPage)} exact />
           <Route path='*' component={NotFound} exact />
         </Switch>
-      </Provider>
-    </Suspense>
+      </DndProvider>
+    </Provider>
   );
 }
 

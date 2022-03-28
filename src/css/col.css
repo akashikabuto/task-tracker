@@ -1,0 +1,10 @@
+.col {
+  min-height: 300px;
+  max-width: 300px;
+  width: 300px;
+  padding: 10px;
+}
+
+.highlight-region {
+  background-color: rgb(39, 39, 235);
+}
