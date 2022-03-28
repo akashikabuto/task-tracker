@@ -23,7 +23,7 @@ export default function Project() {
         <p>O projects</p>
         : projects.map(({ id, project_name }) => {
           return (
-            <AllTasks id={id} name={project_name} />
+            <AllTasks id={id} name={project_name} key={id} />
           );
         })}
     </>
