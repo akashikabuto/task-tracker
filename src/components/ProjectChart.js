@@ -23,12 +23,12 @@ export default function ProjectChart() {
       {
         data: [12, 19, 3],
         backgroundColor: [
-          'whitesmoke',
+          'gray',
           'blue',
           'red'
         ],
         borderColor: [
-          'whitesmoke',
+          'gray',
           'blue',
           'red'
         ],
