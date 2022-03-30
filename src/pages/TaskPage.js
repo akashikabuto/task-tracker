@@ -1,27 +1,17 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import DashNavBar from "../components/DashNavBar";
-import Task from "../components/Task";
-import Col from "../components/Col";
-import DropWrapper from "../components/DropWrapper";
-import { statuses, data } from '../data/index';
 import { useTranslation } from 'react-i18next';
 import '../css/taskPage.css';
+import TaskCard from "../components/TaskCard";
+import TargetCard from "../components/TargetCard";
+import { useSelector } from "react-redux";
 
 
 export default function TaskPage() {
 
-  const [items, setItems] = useState(data);
   const locale = localStorage.getItem("lang") || "eng";
-  const onDrop = (item, monitor, status) => {
-    const mapping = statuses.find(si => si.status === status);
 
-    setItems(prevState => {
-      const newItems = prevState
-        .filter(i => i.id !== item.id)
-        .concat({ ...item, status, icon: mapping.icon });
-      return [...newItems];
-    });
-  };
+  const { projectTasks } = useSelector(state => state.tasks);
 
   const { t, i18n } = useTranslation();
 
@@ -30,14 +20,7 @@ export default function TaskPage() {
     //eslint-disable-next-line
   }, [locale]);
 
-  const moveItem = (dragIndex, hoverIndex) => {
-    const item = items[dragIndex];
-    setItems(prevState => {
-      const newItems = prevState.filter((i, idx) => idx !== dragIndex);
-      newItems.splice(hoverIndex, 0, item);
-      return [...newItems];
-    });
-  };
+
 
   return (
     <div>
@@ -45,22 +28,37 @@ export default function TaskPage() {
       <div className="button-wrapper" >
         <button className="add-button" >{t("AddTask")}</button>
       </div>
-      <div className="row" >
-        {statuses.map(s => {
-          return (
-            <div key={s.status} className="col-wrapper">
-              <h2 className="col-header">{s.status.toUpperCase()}</h2>
-              <DropWrapper onDrop={onDrop} status={s.status}>
-                <Col>
-                  {items
-                    .filter(i => i.status === s.status)
-                    .map((i, idx) => <Task key={i.id} task={i} index={idx} moveTask={moveItem} status={s.status} />)
-                  }
-                </Col>
-              </DropWrapper>
-            </div>
-          );
-        })}
+      <div className="open-container" >
+        <div className="open-container-title" >
+          <h1>{t("OpenTasks")}</h1>
+          {projectTasks
+            .filter(item => item.status === 'open')
+            .map(({ id, status, title, content, icon }) =>
+              <TaskCard key={id}
+                status={status}
+                title={title}
+                content={content}
+                icon={icon}
+              />
+            )
+          }
+        </div>
+      </div>
+      <div className="done-container" >
+        <h1>{t("DoneTasks")}</h1>
+        <TargetCard>
+          {projectTasks
+            .filter(item => item.status === 'done')
+            .map(({ id, status, title, content, icon }) =>
+              <TaskCard key={id}
+                status={status}
+                title={title}
+                content={content}
+                icon={icon}
+              />
+            )
+          }
+        </TargetCard>
       </div>
     </div>
   );

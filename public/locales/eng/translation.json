@@ -24,5 +24,6 @@
   "Tasks":"Tasks",
   "Status":"Status",
   "Issues":"Issues",
-  "AddTask":"Add Task"
+  "AddTask":"Add Task",
+  "OpenTasks":"Open Tasks"
 }

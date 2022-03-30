@@ -22,30 +22,9 @@ const data = [{
   status: "open",
   title: "Daily reading",
   content: "Finish reading Intro to UI/UX"
-}, {
-  id: 5,
-  icon: "⭕️",
-  status: "open",
-  title: "Daily reading",
-  content: "Akashi"
-}, {
-  id: 6,
-  icon: "⭕️",
-  status: "open",
-  title: "Daily reading",
-  content: "KUKUSHI"
 }
 ];
 
-const statuses = [{
-  status: "open",
-  icon: "⭕️",
-  color: "#EB5A46"
-}, {
-  status: "done",
-  icon: "✅",
-  color: "#3981DE"
-}];
 
 
-export { data, statuses };
+export { data };

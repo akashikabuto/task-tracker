@@ -24,5 +24,6 @@
   "Tasks":"Tâches",
   "Status":"Statut",
   "Issues":"problèmes",
-  "AddTask":"ajouter un Tâche "
+  "AddTask":"ajouter un Tâche ",
+  "OpenTasks":"Tâches ouvertes"
 }

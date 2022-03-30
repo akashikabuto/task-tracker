@@ -1,9 +1,11 @@
 import * as types from '../actions/types';
+import { data } from '../../data';
 
 const initialState = {
   projects: [],
   oneProject: [],
-  sideBarStatus: false
+  sideBarStatus: false,
+  projectTasks: data,
 };
 
 export const taskReducer = (state = initialState, { type, payload }) => {
@@ -23,6 +25,13 @@ export const taskReducer = (state = initialState, { type, payload }) => {
         ...state,
         sideBarStatus: payload
       };
+
+    case types.CHANGE_TASK_TO_DONE:
+      return {
+        ...state,
+        projectTasks: payload
+      };
+
     default:
       return state;
   }
