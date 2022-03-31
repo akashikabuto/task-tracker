@@ -78,16 +78,16 @@ export const makeStatusTaskToDone = (id) => async (dispatch, getState) => {
   const { tasks } = getState();
   const { projectTasks } = tasks;
   const array = projectTasks.filter((task) => task.id === id);
-  array[0].status = 'done';
+
+
+  array[0].status === 'done' ? array[0].status = 'open' : array[0].status = 'done';
 
   const newArray = array.filter((task) => task.id !== id).concat([...projectTasks]);
-
 
   return dispatch({
     type: types.CHANGE_TASK_TO_DONE,
     payload: newArray
   });
-
 
 };
 

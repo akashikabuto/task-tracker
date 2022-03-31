@@ -34,6 +34,13 @@ const data = [{
   status: "open",
   title: "Daily reading",
   content: "Finish reading Intro to UI/UX with kukushi"
+},
+{
+  id: 7,
+  icon: "⭕️",
+  status: "open",
+  title: "Daily reading",
+  content: "Finish reading Intro to UI/UX with kukushigrf"
 }
 ];
 

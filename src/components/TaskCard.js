@@ -2,7 +2,7 @@ import { useDrag } from 'react-dnd';
 import { ITEM } from '../data/Types';
 import '../css/taskCard.css';
 
-export default function TaskCard({ id, status, title, content, icon }) {
+export default function TaskCard({ id, status, title }) {
 
   const [{ isDragging }, drag] = useDrag({
     type: ITEM,
@@ -13,13 +13,14 @@ export default function TaskCard({ id, status, title, content, icon }) {
   });
 
   return (
-    <div className={isDragging ? 'task-card-dargging' : 'task-card'}
+    <div className={'task-card'}
       ref={drag}
+      style={{
+        opacity: isDragging ? 0 : 1,
+      }}
     >
-      <p> {title} </p>
-      <p> {content} </p>
-      <p>{status} </p>
-      <p> {icon} </p>
+      <p className='title' > {title} </p>
+      <p className='status'>{status} </p>
     </div>
   );
 }

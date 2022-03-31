@@ -27,7 +27,7 @@ export default function TaskPage() {
 
 
   return (
-    <div>
+    <div className="taskpage" >
       <DashNavBar />
       <div className="button-wrapper" >
         <button className="add-button" >{t("AddTask")}</button>
@@ -37,21 +37,21 @@ export default function TaskPage() {
           <div className="open-container-title" >
             <h1>{t("OpenTasks")}</h1>
           </div>
-          <div className="tasks" >
+          <TargetCard>
             {projectTasks
               .filter(item => item.status === 'open')
-              .map(({ id, status, title, content, icon }) =>
+              .map(({ id, status, title }) =>
                 <TaskCard key={id}
                   status={status}
                   id={id}
                   title={title}
-                  content={content}
-                  icon={icon}
                 />
               )
             }
-          </div>
-
+          </TargetCard>
+          {/* <div className="tasks" >
+            
+          </div> */}
         </div>
         <div className="done-container" >
           <div className="open-container-title" >
@@ -61,13 +61,12 @@ export default function TaskPage() {
           <TargetCard>
             {projectTasks
               .filter(item => item.status === 'done')
-              .map(({ id, status, title, content, icon }) =>
+              .map(({ id, status, title }) =>
                 <TaskCard key={id}
                   status={status}
                   title={title}
                   id={id}
-                  content={content}
-                  icon={icon}
+
                 />
               )
             }
