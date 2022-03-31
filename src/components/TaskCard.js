@@ -1,22 +1,20 @@
 import { useDrag } from 'react-dnd';
 import { ITEM } from '../data/Types';
+import '../css/taskCard.css';
 
 export default function TaskCard({ id, status, title, content, icon }) {
 
   const [{ isDragging }, drag] = useDrag({
     type: ITEM,
-    item: { id: id, status: status, title: title, content: content, icon: icon },
+    item: { id: id },
     collect: monitor => ({
       isDragging: monitor.isDragging(),
     })
   });
 
   return (
-    <div className='task-card'
+    <div className={isDragging ? 'task-card-dargging' : 'task-card'}
       ref={drag}
-      style={{
-        opacity: isDragging ? 0.5 : 1,
-      }}
     >
       <p> {title} </p>
       <p> {content} </p>

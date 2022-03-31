@@ -22,6 +22,18 @@ const data = [{
   status: "open",
   title: "Daily reading",
   content: "Finish reading Intro to UI/UX"
+}, {
+  id: 5,
+  icon: "⭕️",
+  status: "open",
+  title: "Daily reading",
+  content: "Finish reading Intro with akashi"
+}, {
+  id: 6,
+  icon: "⭕️",
+  status: "open",
+  title: "Daily reading",
+  content: "Finish reading Intro to UI/UX with kukushi"
 }
 ];
 

@@ -64,11 +64,8 @@ export const viewOneProject = (token, id) => async (dispatch, getState) => {
 export const toogleSideBar = () => async (dispatch, getState) => {
 
   const { tasks } = getState();
-
   const { sideBarStatus } = tasks;
-
   let status;
-
   sideBarStatus ? status = false : status = true;
 
   return dispatch({
@@ -83,13 +80,12 @@ export const makeStatusTaskToDone = (id) => async (dispatch, getState) => {
   const array = projectTasks.filter((task) => task.id === id);
   array[0].status = 'done';
 
-  const t = array.filter((task) => task.id === id ? task.status = 'done' : task);
+  const newArray = array.filter((task) => task.id !== id).concat([...projectTasks]);
 
-  console.log('t', t);
 
   return dispatch({
     type: types.CHANGE_TASK_TO_DONE,
-    payload: t
+    payload: newArray
   });
 
 

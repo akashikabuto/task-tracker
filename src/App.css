@@ -95,26 +95,6 @@
   padding-left: 5px;
 }
 
-.target-box-isover {
-  background-color: red;
-  height: 100px;
-}
-
-.target-box {
-  background-color: green;
-  height: 100px;
-}
-.task-card {
-  background-color: yellow;
-  padding: 5px;
-  margin: 5px;
-}
-
-.done-container {
-  background-color: blue;
-  height: 300px;
-}
-
 @media only screen and (max-width: 480px) {
   .dashboard-container {
     display: flex;
