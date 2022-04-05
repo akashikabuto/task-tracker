@@ -1,4 +1,5 @@
 import * as types from '../actions/types';
+import io from 'socket.io-client';
 
 let url = `http://localhost:7000`;
 
@@ -90,5 +91,82 @@ export const makeStatusTaskToDone = (id) => async (dispatch, getState) => {
   });
 
 };
+
+export const setUpSocket = () => async (dispatch, getState) => {
+
+  const token = localStorage.getItem('token');
+
+  const { tasks } = getState();
+  const { socket } = tasks;
+
+  if (token && !socket) {
+    const newSocket = io('ws://localhost:7000', {
+      query: {
+        token: token
+      }
+    });
+
+    newSocket.on('connect', () => {
+      console.log('connected');
+    });
+
+    newSocket.on('disconnect', () => {
+      console.log('disconnected');
+    });
+
+    dispatch({
+      type: types.SET_UP_SOCKET,
+      payload: newSocket
+    });
+
+  }
+};
+
+export const getRoomMessages = (roomId, token) => async (dispatch, getState) => {
+
+  try {
+    const config = {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    };
+    const res = await (await fetch(`${url}/api/user/roomMessages?roomId=${roomId}`, config)).json();
+    if (res.status === 200) {
+      dispatch({
+        type: types.ALL_MESSAGES,
+        payload: res.data
+      });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+
+};
+
+
+
+export const allMessagesBetweenUsers = () => async (dispatch, getState) => {
+
+  const { tasks } = getState();
+  const { socket, messages } = tasks;
+  console.log("msas", messages);
+
+  if (socket) {
+    socket.on("newMessage", (message) => {
+      const newMessages = [...messages, message];
+      console.log('obj', message);
+      console.log('yes', newMessages);
+      dispatch({
+        type: types.ALL_MESSAGES,
+        payload: newMessages
+      });
+    });
+  }
+
+
+};
+
+
 
 

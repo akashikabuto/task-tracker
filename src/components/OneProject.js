@@ -29,7 +29,7 @@ export default function OneProject() {
 
   return (
     <>
-      <ProjectCards />
+      <ProjectCards projectId={id} />
       <div>
         {oneProject.map(({ id, project_name }) => {
           return <ProjectDetails id={id} projectName={project_name} />;

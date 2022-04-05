@@ -49,15 +49,11 @@ export default function TaskPage() {
               )
             }
           </TargetCard>
-          {/* <div className="tasks" >
-            
-          </div> */}
         </div>
         <div className="done-container" >
           <div className="open-container-title" >
             <h1>{t("DoneTasks")}</h1>
           </div>
-
           <TargetCard>
             {projectTasks
               .filter(item => item.status === 'done')
@@ -66,7 +62,6 @@ export default function TaskPage() {
                   status={status}
                   title={title}
                   id={id}
-
                 />
               )
             }

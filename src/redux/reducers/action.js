@@ -6,6 +6,8 @@ const initialState = {
   oneProject: [],
   sideBarStatus: false,
   projectTasks: data,
+  socket: null,
+  messages: []
 };
 
 export const taskReducer = (state = initialState, { type, payload }) => {
@@ -32,6 +34,17 @@ export const taskReducer = (state = initialState, { type, payload }) => {
         projectTasks: payload
       };
 
+    case types.SET_UP_SOCKET:
+      return {
+        ...state,
+        socket: payload
+      };
+
+    case types.ALL_MESSAGES:
+      return {
+        ...state,
+        messages: payload
+      };
     default:
       return state;
   }

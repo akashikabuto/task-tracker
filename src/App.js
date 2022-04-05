@@ -23,6 +23,9 @@ const NewTaskPage = lazy(() => import('./pages/NewTask'));
 
 
 function App() {
+
+
+
   return (
     <Provider store={store} >
       <DndProvider backend={Backend} >
@@ -33,7 +36,7 @@ function App() {
           <Route path="/dashboard" component={isLoggedIn(DashboardPage)} exact />
           <Route path="/dashboard/addTask" component={isLoggedIn(AddTaskPage)} exact />
           <Route path="/dashboard/project/:id" component={isLoggedIn(ProjectPage)} exact />
-          <Route path='/dashboard/chat' component={isLoggedIn(ChatroomPage)} exact />
+          <Route path='/dashboard/chat/:id' component={isLoggedIn(ChatroomPage)} exact />
           <Route path='/dashboard/tasks' component={isLoggedIn(TaskPage)} exact />
           <Route path='/dashboard/newTask' component={isLoggedIn(NewTaskPage)} exact />
           <Route path='*' component={NotFound} exact />
