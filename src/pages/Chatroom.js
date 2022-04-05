@@ -26,7 +26,6 @@ export default function Chatroom() {
       });
     }
     return () => {
-      //Component Unmount
       if (socket) {
         socket.emit("leaveRoom", {
           chatroomId,

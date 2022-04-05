@@ -9,6 +9,10 @@
   border-radius: 10px;
   margin: 5px;
 }
+.username{
+  color: blue;
+  font-weight: 710;
+}
 .m2 {
   display: flex;
   justify-content: space-between;

@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import '../css/MessageFooter.css';
 import { IoSend } from "react-icons/io5";
-import { useDispatch } from 'react-redux';
-import { allMessagesBetweenUsers } from '../redux/actions/actions';
+
+
 
 
 export default function MessageFooter({ socket, chatroomId }) {
 
-  const dispatch = useDispatch();
   const [state, setState] = useState({
     message: ""
   });
@@ -19,7 +18,6 @@ export default function MessageFooter({ socket, chatroomId }) {
         message: state.message,
       });
       console.log('sent');
-      dispatch(allMessagesBetweenUsers());
     }
     setState({ ...state, message: "" });
   };
