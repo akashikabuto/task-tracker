@@ -1,27 +1,42 @@
-.row {
+.container {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  padding: 5px;
+  justify-content: space-between;
+  height: 500px;
 }
-.col-wrapper {
-  display: flex;
-  flex-direction: column;
-  margin: 20px;
-  padding: 20px;
-  background-color: whitesmoke;
-  border-radius: 5px;
-}
-.col-header {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 20px;
-  margin-top: 0;
-  text-align: center;
-  color: blue;
+
+.taskpage {
+  height: 100vh;
+  background-color: #f5f6f5;
 }
 .button-wrapper {
   display: flex;
   justify-content: center;
+}
+.open-container {
+  position: relative;
+  width: 45%;
+  height: 100%;
+  padding: 5px;
+}
+.tasks {
+  padding: 5px;
+  overflow-y: auto;
+  height: 410px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.19);
+  background-color: white;
+}
+.done-container {
+  height: 100%;
+  width: 45%;
+  padding: 5px;
+}
+.open-container-title {
+  position: sticky;
+  width: 100%;
+  text-align: center;
+  background-color: blue;
+  color: whitesmoke;
 }
 .add-button {
   background: #0065ff;
@@ -35,4 +50,14 @@
   color: white;
   margin-top: 10px;
   margin-top: 5px;
+}
+.tasks::-webkit-scrollbar {
+  width: 0px;
+}
+.tasks::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+.tasks::-webkit-scrollbar-thumb {
+  background-color: #0065ff;
+  outline: 1px solid #0065ff;
 }

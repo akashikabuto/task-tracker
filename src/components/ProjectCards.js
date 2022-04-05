@@ -6,7 +6,7 @@ import '../css/projectCard.css';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 
-export default function ProjectCards() {
+export default function ProjectCards({ projectId }) {
 
   const { t, i18n } = useTranslation();
   const locale = localStorage.getItem("lang") || "eng";
@@ -18,7 +18,7 @@ export default function ProjectCards() {
   }, [locale]);
 
   function goToChatRoom() {
-    history.push('/dashboard/chat');
+    history.push(`/dashboard/chat/${projectId}`);
   }
 
   return (

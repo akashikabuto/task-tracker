@@ -1,9 +1,13 @@
 import * as types from '../actions/types';
+import { data } from '../../data';
 
 const initialState = {
   projects: [],
   oneProject: [],
-  sideBarStatus: false
+  sideBarStatus: false,
+  projectTasks: data,
+  socket: null,
+  messages: []
 };
 
 export const taskReducer = (state = initialState, { type, payload }) => {
@@ -22,6 +26,24 @@ export const taskReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         sideBarStatus: payload
+      };
+
+    case types.CHANGE_TASK_TO_DONE:
+      return {
+        ...state,
+        projectTasks: payload
+      };
+
+    case types.SET_UP_SOCKET:
+      return {
+        ...state,
+        socket: payload
+      };
+
+    case types.ALL_MESSAGES:
+      return {
+        ...state,
+        messages: payload
       };
     default:
       return state;

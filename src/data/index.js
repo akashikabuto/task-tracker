@@ -27,25 +27,23 @@ const data = [{
   icon: "⭕️",
   status: "open",
   title: "Daily reading",
-  content: "Akashi"
+  content: "Finish reading Intro with akashi"
 }, {
   id: 6,
   icon: "⭕️",
   status: "open",
   title: "Daily reading",
-  content: "KUKUSHI"
+  content: "Finish reading Intro to UI/UX with kukushi"
+},
+{
+  id: 7,
+  icon: "⭕️",
+  status: "open",
+  title: "Daily reading",
+  content: "Finish reading Intro to UI/UX with kukushigrf"
 }
 ];
 
-const statuses = [{
-  status: "open",
-  icon: "⭕️",
-  color: "#EB5A46"
-}, {
-  status: "done",
-  icon: "✅",
-  color: "#3981DE"
-}];
 
 
-export { data, statuses };
+export { data };
