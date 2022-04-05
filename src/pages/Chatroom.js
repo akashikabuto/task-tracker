@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import ChatGroupPeople from '../components/ChatGroupPeople';
 import Chats from '../components/Chats';
 import DashNavBar from '../components/DashNavBar';

@@ -150,13 +150,10 @@ export const allMessagesBetweenUsers = () => async (dispatch, getState) => {
 
   const { tasks } = getState();
   const { socket, messages } = tasks;
-  console.log("msas", messages);
 
   if (socket) {
     socket.on("newMessage", (message) => {
       const newMessages = [...messages, message];
-      console.log('obj', message);
-      console.log('yes', newMessages);
       dispatch({
         type: types.ALL_MESSAGES,
         payload: newMessages

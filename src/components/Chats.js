@@ -19,10 +19,10 @@ export default function Chats({ userId, socket, chatroomId }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [socket]);
 
-  const scrollRef = useRef();
+  const scrollRef = useRef(null);
 
   useEffect(() => {
-    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+    scrollRef.current.scrollIntoView({ behavior: "smooth" });
     if (socket) {
       dispatch(allMessagesBetweenUsers());
     }
@@ -31,7 +31,7 @@ export default function Chats({ userId, socket, chatroomId }) {
 
 
   return (
-    <div ref={scrollRef} >
+    <div ref={scrollRef} className="scroll" >
       {messages.map((message, i) => (
         <div key={i} className="message">
           {(id.toString()) === message.user ? <div className="right-wrapper">
