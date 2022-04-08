@@ -33,16 +33,12 @@ export default function OneProject() {
     <>
       <ProjectCards projectId={id} />
       <div>
-        {oneProject.map(({ _id, project }) => {
-          return <ProjectDetails id={_id} projectName={project.name} />;
-        })}
+        <ProjectDetails id={oneProject._id} projectName={oneProject.name} />
       </div>
-      {oneProject.map(({ _id }) => {
-        return <div className="project-status" key={_id} >
-          <p>{t("Status")} :</p>
-          <p className="progress" >In progress</p>
-        </div>;
-      })}
+      <div className="project-status" >
+        <p>{t("Status")} :</p>
+        <p className="progress" > {oneProject.status} {oneProject.name} </p>
+      </div>
       <div className="chart" >
         <ProjectChart />
       </div>

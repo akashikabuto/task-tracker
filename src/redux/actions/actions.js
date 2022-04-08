@@ -2,7 +2,7 @@ import * as types from '../actions/types';
 import io from 'socket.io-client';
 
 let url = `https://mern-learning-task-tracker.herokuapp.com`;
-let urls = 'http://localhost:7000';
+
 
 
 export const seeAllProjects = (token, lang, history) => async (dispatch, getState) => {
@@ -67,13 +67,17 @@ export const viewOneProject = (token, id, history) => async (dispatch, getState)
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
+        'accept-language': `${lang}`
       }
     };
-    const res = await (await fetch(`${url}/api/user/project?id=${id}`, config)).json();
-    dispatch({
-      type: types.ONE_PROJECT,
-      payload: res.data
-    });
+    const res = await (await fetch(`${url}/api/project/${id}`, config)).json();
+
+    if (res.status === 200) {
+      dispatch({
+        type: types.ONE_PROJECT,
+        payload: res.data
+      });
+    }
 
   } catch (error) {
     console.log(error);
