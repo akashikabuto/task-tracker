@@ -1,19 +1,22 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { seeAllProjects } from '../redux/actions/actions';
 import AllTasks from './AllTasks';
 
 
 
 
-export default function Project() {
+export default function Project({ lang }) {
   const token = localStorage.getItem('token');
   const { projects } = useSelector(state => state.tasks);
+
+  const history = useHistory();
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(seeAllProjects(token));
+    dispatch(seeAllProjects(token, lang, history));
     //eslint-disable-next-line
   }, []);
 
@@ -21,9 +24,9 @@ export default function Project() {
     < >
       {projects.length === 0 ?
         <p>O projects</p>
-        : projects.map(({ id, project_name }) => {
+        : projects.map(({ _id, project }) => {
           return (
-            <AllTasks id={id} name={project_name} key={id} />
+            <AllTasks id={_id} name={project.name} key={_id} />
           );
         })}
     </>

@@ -5,66 +5,31 @@ import google from '../images/google.png';
 import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import '../css/loginBody.css';
+import * as yup from 'yup';
 
 
 
 export default function LoginBody() {
 
-  let url = `http://localhost:7000`;
+  let url = `https://mern-learning-task-tracker.herokuapp.com`;
 
   const history = useHistory();
 
   const initialState = {
-    email: "",
+    account: "",
     password: "",
-    message: ""
+  };
+
+  const Error = {
+    account: "",
+    password: ""
   };
 
   const { t, i18n } = useTranslation();
-
+  const [error, setError] = useState('');
   const [state, setState] = useState(initialState);
   const [loading, setLoading] = useState(false);
-
-  function OnChange(e) {
-    setState({ ...state, [e.target.name]: e.target.value });
-  }
-
-  async function login(e) {
-    e.preventDefault();
-    setLoading(true);
-    console.log(state);
-    try {
-      const config = {
-        method: "POST",
-        headers: {
-          'Content-type': "application/json",
-        },
-        body: JSON.stringify(state)
-      };
-      const res = await (await fetch(`${url}/api/auth/login`, config)).json();
-      if (res.status === 200) {
-        localStorage.setItem('token', res.token);
-        history.push('/dashboard');
-      }
-      if (res.status === 203) {
-        setLoading(false);
-        setState({ ...state, message: res.message });
-        setTimeout(() => {
-          setState({ ...state, message: '' });
-        }, 4000);
-      }
-      if (res.status === 205) {
-        setLoading(false);
-        setState({ ...state, message: res.message });
-        setTimeout(() => {
-          setState({ ...state, message: '' });
-        }, 4000);
-      }
-    } catch (error) {
-      setLoading(false);
-      console.log("error", error);
-    }
-  }
+  const [errors, setErrors] = useState(Error);
 
   const locale = localStorage.getItem("lang") || "eng";
 
@@ -72,6 +37,67 @@ export default function LoginBody() {
     i18n.changeLanguage(locale);
     //eslint-disable-next-line
   }, [locale]);
+
+
+  function OnChange(e) {
+    setState({ ...state, [e.target.name]: e.target.value });
+  }
+
+  async function login() {
+    setLoading(true);
+    try {
+      const config = {
+        method: "POST",
+        headers: {
+          'Content-type': "application/json",
+          'accept-language': `${locale}`
+        },
+        body: JSON.stringify(state)
+      };
+      const res = await (await fetch(`${url}/api/user/login`, config)).json();
+      if (res.status === 200) {
+        localStorage.setItem('token', res.data.token);
+        history.push('/dashboard');
+      }
+      if (res.status === 400) {
+        setLoading(false);
+        setError(res.error);
+      }
+      if (res.status === 422) {
+        setLoading(false);
+        setError(res.error);
+      }
+      else if (res.status === 500) {
+        setLoading(false);
+        window.alert('Server down');
+      }
+    } catch (error) {
+      setLoading(false);
+      console.log("error", error);
+    }
+  }
+
+
+
+  const signUpSchema = yup.object({
+    account: yup.string().required().typeError(`${t('AccountIsRequired')}`),
+    password: yup.string().required().matches(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/,
+      `${t("passwordError")}`)
+  });
+
+
+  async function handleLogin(e) {
+    e.preventDefault();
+    const validate = await signUpSchema.validate(state)
+      .then(() => { return true; })
+      .catch(err => { setErrors({ ...errors, [err.path]: err.message }); return false; });
+    if (validate) {
+      login();
+    }
+  }
+
+
+
 
 
   return (
@@ -82,12 +108,13 @@ export default function LoginBody() {
       </div>
       <div className='login-form-container' >
         <p className='tracker-t' >{t("LoginTrackerText")} </p>
-        {state.message ? <p style={{ color: "red" }} > {state.message} </p> : ""}
-        <form onSubmit={login} >
-          <Input placeholder='Email' type="email" handleOnchange={OnChange} name="email" />
-          <Input placeholder="Password" type="password" handleOnchange={OnChange} name="password" />
-          {loading ? <button className='login-button' disabled >{t("loading")}</button> :
-            <button className='login-button' >{t("loginText")}</button>}
+        {error ? <div className='Error' > {error} </div> : ""}
+        <form onSubmit={handleLogin} >
+          <Input placeholder='Account' type="text" handleOnchange={OnChange} name="account" error={errors.account} />
+          <Input placeholder="Password" type="password" handleOnchange={OnChange} name="password" error={errors.password} />
+          <button className='login-button' disabled={loading ? true : false} >
+            {loading ? (`${t("loading")}`) : (`${t("loginText")}`)}
+          </button>
         </form>
         <p className='login-not-account'>Forgot password?</p>
         <br />

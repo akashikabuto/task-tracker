@@ -85,6 +85,12 @@
   cursor: pointer;
 }
 
+.Error{
+  font-size: 13px;
+  color: red;
+  padding: 5px;
+}
+
 @media only screen and (max-width: 480px) {
   .login-form-container {
     width: 88%;

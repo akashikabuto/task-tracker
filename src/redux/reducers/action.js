@@ -7,7 +7,8 @@ const initialState = {
   sideBarStatus: false,
   projectTasks: data,
   socket: null,
-  messages: []
+  messages: [],
+  projectExists: false
 };
 
 export const taskReducer = (state = initialState, { type, payload }) => {
@@ -45,6 +46,12 @@ export const taskReducer = (state = initialState, { type, payload }) => {
         ...state,
         messages: payload
       };
+    case types.PROJECT_EXISTS:
+      return {
+        ...state,
+        projectExists: true
+      };
+
     default:
       return state;
   }

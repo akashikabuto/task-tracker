@@ -11,22 +11,25 @@ export default function MessageFooter({ socket, chatroomId }) {
     message: ""
   });
 
+  function emitMessage() {
+    socket.emit("chatroomMessage", {
+      chatroomId,
+      message: state.message,
+    });
+  }
+
   const sendMessage = () => {
     if (socket) {
-      socket.emit("chatroomMessage", {
-        chatroomId,
-        message: state.message,
-      });
-      console.log('sent');
+      emitMessage();
+      setState({ ...state, message: "" });
     }
-    setState({ ...state, message: "" });
   };
 
 
   return (
     <div className='MessageFooter' >
       <div className='container'  >
-        <input placeholder='Enter Message' className='mess-input' onChange={(e) => setState({ ...state, message: e.target.value })} />
+        <input placeholder='Enter Message' value={state.message} className='mess-input' onChange={(e) => setState({ ...state, message: e.target.value })} />
         <IoSend color='white' className='send-m-button' onClick={sendMessage} />
       </div>
     </div>

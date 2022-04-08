@@ -5,6 +5,7 @@
   background-color: rgb(38, 38, 236);
   color: white;
   align-items: center;
+  width: 100%;
 }
 .dash-nav-links {
   display: flex;

@@ -1,20 +1,22 @@
 .chatroom {
   height: 100vh;
+  position: relative;
 }
 
 .chatroom-container {
   display: flex;
+  height: 100%;
+  position: fixed;
 }
 
 .chats {
   position: fixed;
   right: 0%;
   width: calc(100% - 240px);
-  height: 100%;
   background-color: white;
-  overflow-y: scroll;
+  height: 100%
 }
-/* .chat-wrapper{
-  display: flex;
-  flex-direction: column;
-} */
+.chat-wrapper{
+  height: 100%;
+  
+}
