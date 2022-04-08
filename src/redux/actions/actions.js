@@ -155,10 +155,11 @@ export const getRoomMessages = (roomId, token) => async (dispatch, getState) => 
     const config = {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
+
       }
     };
-    const res = await (await fetch(`${url}/api/messages/all?roomId=${roomId}`, config)).json();
+    const res = await (await fetch(`${url}/api/message/all?roomId=${roomId}`, config)).json();
     if (res.status === 200) {
       dispatch({
         type: types.ALL_MESSAGES,
