@@ -26,7 +26,7 @@ export default function Project({ lang }) {
         <p>O projects</p>
         : projects.map(({ _id, project }) => {
           return (
-            <AllTasks id={_id} name={project.name} key={_id} />
+            <AllTasks id={project._id} name={project.name} key={_id} />
           );
         })}
     </>

@@ -72,11 +72,16 @@ export const viewOneProject = (token, id, history) => async (dispatch, getState)
     };
     const res = await (await fetch(`${url}/api/project/${id}`, config)).json();
 
+    console.log("res", res);
+
     if (res.status === 200) {
       dispatch({
         type: types.ONE_PROJECT,
         payload: res.data
       });
+    }
+    if (res.status === 401) {
+      history.push('/login');
     }
 
   } catch (error) {
@@ -122,7 +127,7 @@ export const setUpSocket = () => async (dispatch, getState) => {
   const { socket } = tasks;
 
   if (token && !socket) {
-    const newSocket = io('ws://localhost:7000', {
+    const newSocket = io(`https://mern-learning-task-tracker.herokuapp.com`, {
       query: {
         token
       }
@@ -153,7 +158,7 @@ export const getRoomMessages = (roomId, token) => async (dispatch, getState) => 
         Authorization: `Bearer ${token}`
       }
     };
-    const res = await (await fetch(`${url}/api/user/roomMessages?roomId=${roomId}`, config)).json();
+    const res = await (await fetch(`${url}/api/messages/all?roomId=${roomId}`, config)).json();
     if (res.status === 200) {
       dispatch({
         type: types.ALL_MESSAGES,

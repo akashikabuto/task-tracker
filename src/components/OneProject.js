@@ -29,6 +29,8 @@ export default function OneProject() {
   }, [locale]);
 
 
+  console.log('oneProject', oneProject);
+
   return (
     <>
       <ProjectCards projectId={id} />
@@ -37,7 +39,7 @@ export default function OneProject() {
       </div>
       <div className="project-status" >
         <p>{t("Status")} :</p>
-        <p className="progress" > {oneProject.status} {oneProject.name} </p>
+        <p className="progress" > {oneProject.status}</p>
       </div>
       <div className="chart" >
         <ProjectChart />
