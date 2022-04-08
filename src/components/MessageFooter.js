@@ -11,13 +11,17 @@ export default function MessageFooter({ socket, chatroomId }) {
     message: ""
   });
 
+  function emitMessage() {
+    socket.emit("chatroomMessage", {
+      chatroomId,
+      message: state.message,
+    });
+  }
+
   const sendMessage = () => {
-    setState({ ...state, message: "" });
     if (socket) {
-      socket.emit("chatroomMessage", {
-        chatroomId,
-        message: state.message,
-      });
+      emitMessage();
+      setState({ ...state, message: "" });
     }
   };
 

@@ -8,6 +8,16 @@
   background-color: 'white';
   outline-color: #0065ff;
 }
+.error-border{
+  border:1px solid red;
+  outline-color: red;
+}
+
+.input-error{
+  font-size: 13px;
+  color: red;
+  padding: 5px;
+}
 
 @media only screen and (max-width: 480px) {
   .login-input {

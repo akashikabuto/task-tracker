@@ -102,7 +102,7 @@ export const setUpSocket = () => async (dispatch, getState) => {
   if (token && !socket) {
     const newSocket = io('ws://localhost:7000', {
       query: {
-        token: token
+        token
       }
     });
 
@@ -143,7 +143,6 @@ export const getRoomMessages = (roomId, token) => async (dispatch, getState) => 
   }
 
 };
-
 
 
 export const allMessagesBetweenUsers = () => async (dispatch, getState) => {

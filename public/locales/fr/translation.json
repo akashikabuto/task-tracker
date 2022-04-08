@@ -26,5 +26,10 @@
   "Issues": "problèmes",
   "AddTask": "ajouter un Tâche ",
   "OpenTasks": "Tâches ouvertes",
-  "DoneTasks":"Tâches terminées"
+  "DoneTasks":"Tâches terminées",
+  "passwordError":"La longueur du mot de passe doit dépasser 6 et inclure au moins un chiffre, un caractère, une majuscule, une minuscule et un caractère spécial. Par exemple : !*'",
+  "emailError":"L'email doit être valide",
+  "phoneError":"Le téléphone doit être rwandais",
+  "usernameError":"Nom d'utilisateur est nécessaire",
+  "fullNameError":"Nom  ne doivent être que des lettres"
 }
