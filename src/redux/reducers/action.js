@@ -3,7 +3,7 @@ import { data } from '../../data';
 
 const initialState = {
   projects: [],
-  oneProject: [],
+  oneProject: {},
   sideBarStatus: false,
   projectTasks: data,
   socket: null,
