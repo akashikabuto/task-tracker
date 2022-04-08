@@ -35,9 +35,7 @@ export default function SignUpBody() {
 
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-
   const { t, i18n } = useTranslation();
-
   const [state, setState] = useState(initialState);
   const [errors, setErrors] = useState(Error);
 

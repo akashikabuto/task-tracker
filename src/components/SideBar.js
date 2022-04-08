@@ -39,7 +39,7 @@ export default function SideBar() {
       </div>
       <div className='side-projects' >
         <h4>{t("Projects")}</h4>
-        <Project />
+        <Project lang={locale} />
       </div>
     </div>
   );

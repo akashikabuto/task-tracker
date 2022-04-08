@@ -1,22 +1,58 @@
 import * as types from '../actions/types';
 import io from 'socket.io-client';
 
-let url = `http://localhost:7000`;
+let url = `https://mern-learning-task-tracker.herokuapp.com`;
+let urls = 'http://localhost:7000';
 
 
-export const seeAllProjects = (token) => async (dispatch, getState) => {
+export const seeAllProjects = (token, lang, history) => async (dispatch, getState) => {
+
   try {
     const config = {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
+        'accept-language': `${lang}`
       },
     };
-    const res = await (await fetch(`${url}/api/user/projects`, config)).json();
+    const res = await (await fetch(`${url}/api/project/all`, config)).json();
     if (res.status === 200) {
       dispatch({
         type: types.ALL_PROJECTS,
         payload: res.data
+      });
+    }
+    if (res.status === 401) {
+      history.push('/login');
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const addProject = (token, state, history) => async (dispatch, getState) => {
+
+  const lang = localStorage.getItem("lang") || "eng";
+  try {
+    const config = {
+      method: "POST",
+      headers: {
+        'Content-type': "application/json",
+        Authorization: `Bearer ${token}`,
+        'accept-language': `${lang}`
+      },
+      body: JSON.stringify(state)
+    };
+    const res = await (await fetch(`${url}/api/project/add`, config)).json();
+    if (res.status === 201) {
+      dispatch(seeAllProjects(token));
+    }
+    if (res.status === 401) {
+      history.push('/login');
+    }
+    if (res.status === 409) {
+      dispatch({
+        type: types.PROJECT_EXISTS
       });
     }
   } catch (error) {
@@ -24,31 +60,13 @@ export const seeAllProjects = (token) => async (dispatch, getState) => {
   }
 };
 
-export const addProject = (token, state) => async (dispatch, getState) => {
-  try {
-    const config = {
-      method: "POST",
-      headers: {
-        'Content-type': "application/json",
-        Authorization: `Bearer ${token}`
-      },
-      body: JSON.stringify(state)
-    };
-    const res = await (await fetch(`${url}/api/user/createProject`, config)).json();
-    if (res.status === 200) {
-      dispatch(seeAllProjects(token));
-    }
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const viewOneProject = (token, id) => async (dispatch, getState) => {
+export const viewOneProject = (token, id, history) => async (dispatch, getState) => {
+  const lang = localStorage.getItem("lang") || "eng";
   try {
     const config = {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
       }
     };
     const res = await (await fetch(`${url}/api/user/project?id=${id}`, config)).json();

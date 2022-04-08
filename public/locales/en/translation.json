@@ -31,5 +31,6 @@
   "emailError":"Email must be valid",
   "phoneError":"Phone must be a rwandan one",
   "usernameError":"Username is required",
-  "fullNameError":"FullNames must be letters only"
+  "fullNameError":"FullNames must be letters only",
+  "AccountIsRequired":"Account is required"
 }

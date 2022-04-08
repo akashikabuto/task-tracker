@@ -31,5 +31,6 @@
   "emailError":"L'email doit être valide",
   "phoneError":"Le téléphone doit être rwandais",
   "usernameError":"Nom d'utilisateur est nécessaire",
-  "fullNameError":"Nom  ne doivent être que des lettres"
+  "fullNameError":"Nom  ne doivent être que des lettres",
+  "AccountIsRequired":"Un compte est requis"
 }

@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
@@ -11,11 +12,12 @@ import '../css/oneProject.css';
 export default function OneProject() {
 
   const token = localStorage.getItem('token');
+  const history = useHistory();
   const { id } = useParams();
   const dispatch = useDispatch();
   const { oneProject } = useSelector(state => state.tasks);
   useEffect(() => {
-    dispatch(viewOneProject(token, id));
+    dispatch(viewOneProject(token, id, history));
     //eslint-disable-next-line
   }, [id]);
   const { t, i18n } = useTranslation();
@@ -31,14 +33,16 @@ export default function OneProject() {
     <>
       <ProjectCards projectId={id} />
       <div>
-        {oneProject.map(({ id, project_name }) => {
-          return <ProjectDetails id={id} projectName={project_name} />;
+        {oneProject.map(({ _id, project }) => {
+          return <ProjectDetails id={_id} projectName={project.name} />;
         })}
       </div>
-      <div className="project-status" >
-        <p>{t("Status")} :</p>
-        <p className="progress" >In progress</p>
-      </div>
+      {oneProject.map(({ _id }) => {
+        return <div className="project-status" key={_id} >
+          <p>{t("Status")} :</p>
+          <p className="progress" >In progress</p>
+        </div>;
+      })}
       <div className="chart" >
         <ProjectChart />
       </div>
