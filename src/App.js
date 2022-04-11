@@ -20,12 +20,10 @@ const DashboardPage = lazy(() => import('./pages/Dashboard.js'));
 const ChatroomPage = lazy(() => import('./pages/Chatroom'));
 const TaskPage = lazy(() => import('./pages/TaskPage'));
 const NewTaskPage = lazy(() => import('./pages/NewTask'));
+const CollboratorsPage = lazy(() => import('./pages/CollboratorsPage'));
 
 
 function App() {
-
-
-
   return (
     <Provider store={store} >
       <DndProvider backend={Backend} >
@@ -39,6 +37,7 @@ function App() {
           <Route path='/dashboard/chat/:id' component={isLoggedIn(ChatroomPage)} exact />
           <Route path='/dashboard/tasks' component={isLoggedIn(TaskPage)} exact />
           <Route path='/dashboard/newTask' component={isLoggedIn(NewTaskPage)} exact />
+          <Route path='/dashboard/collaborators' component={isLoggedIn(CollboratorsPage)} exact />
           <Route path='*' component={NotFound} exact />
         </Switch>
       </DndProvider>

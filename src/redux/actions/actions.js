@@ -127,12 +127,7 @@ export const setUpSocket = () => async (dispatch, getState) => {
   const { socket } = tasks;
 
   if (token && !socket) {
-    const newSocket = io(`https://mern-learning-task-tracker.herokuapp.com`, {
-      query: {
-        token
-      }
-    });
-
+    const newSocket = io(`https://mern-learning-task-tracker.herokuapp.com`, { query: { token } });
     newSocket.on('connect', () => {
       console.log('connected');
     });
@@ -177,7 +172,6 @@ export const allMessagesBetweenUsers = () => async (dispatch, getState) => {
 
   const { tasks } = getState();
   const { socket, messages } = tasks;
-
   if (socket) {
     socket.on("newMessage", (message) => {
       const newMessages = [...messages, message];
@@ -187,8 +181,6 @@ export const allMessagesBetweenUsers = () => async (dispatch, getState) => {
       });
     });
   }
-
-
 };
 
 

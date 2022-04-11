@@ -1,0 +1,32 @@
+.collaborator-input{
+  border: 1px solid rgb(209, 197, 197);
+  padding: 0.5rem 1.5rem;
+  width: 80%;
+  transition: all 0.5s;
+  margin: 10px;
+  margin-left: 19px;
+  background-color: 'white';
+  outline-color: #0065ff;
+}
+.contributor{
+  padding: 5px;
+  margin: 5px;
+  text-align: center;
+  border: 1px solid rgb(195, 185, 185);
+}
+.searched-contributor{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px;
+}
+.button{
+  background: #0065ff;
+  border: 1px solid transparent;
+  padding: 0.5rem 1.5rem;
+  border-radius: 5px;
+  width: 8%;
+  text-transform: uppercase;
+  margin-left: 10px;
+  color: white;
+}

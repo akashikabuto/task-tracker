@@ -30,6 +30,7 @@
   "passwordError":"Password length must exceed 6 and include atleast a number, a character, uppercase, lowercase, and a special character.eg:!*'",
   "emailError":"Email must be valid",
   "phoneError":"Phone must be a rwandan one",
+  "PhoneRequired":"Phone is required",
   "usernameError":"Username is required",
   "fullNameError":"FullNames must be letters only",
   "AccountIsRequired":"Account is required"

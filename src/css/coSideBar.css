@@ -1,0 +1,18 @@
+.sideBar{
+  background-color: whitesmoke;
+  height: 100%;
+  padding: 5px;
+  overflow-y: auto;
+  position: fixed;
+  width: 240px;
+}
+.sideBar-header{
+  text-align: center;
+  margin: 5px;
+  padding-bottom: 20px;
+}
+.contributors{
+  padding: 5px;
+  margin: 5px;
+  text-align: center;
+}

@@ -40,10 +40,10 @@ export default function SignUpBody() {
   const [errors, setErrors] = useState(Error);
 
   const signUpSchema = yup.object({
-    email: yup.string().email().required().typeError(`${t('Email must be valid')}`),
-    username: yup.string().required().min(5).typeError(`${t('Username is required')}`),
-    fullName: yup.string().required().matches(/^[A-Za-z]/, `${t('FullNames must be letters only')}`),
-    phone: yup.string().required().matches(/^((250))[0-9]+$/, `${t('Phone must be a rwandan one')}`),
+    email: yup.string().email().required().typeError(`${t('emailError')}`),
+    username: yup.string().required().min(5).typeError(`${t('usernameError')}`),
+    fullName: yup.string().required().matches(/^[A-Za-z]/, `${t('fullNameError')}`),
+    phone: yup.string().required(`${t('PhoneRequired')}`).matches(/^((250))[0-9]+$/, `${t('phoneError')}`),
     password: yup.string().required().matches(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/,
       `${t("passwordError")}`)
   });
@@ -71,16 +71,10 @@ export default function SignUpBody() {
       else if (res.status === 409) {
         setLoading(false);
         setError(res.error);
-        // setTimeout(() => {
-        //   setError('');
-        // }, 9000);
       }
       else if (res.status === 422) {
         setLoading(false);
         setError(res.error);
-        // setTimeout(() => {
-        //   setError('');
-        // }, 9000);
       }
       else if (res.status === 500) {
         setLoading(false);
