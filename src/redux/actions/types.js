@@ -5,3 +5,5 @@ export const CHANGE_TASK_TO_DONE = 'CHANGE_TASK_TO_DONE';
 export const SET_UP_SOCKET = 'SET_UP_SOCKET';
 export const ALL_MESSAGES = 'ALL_MESSAGES';
 export const PROJECT_EXISTS = 'PROJECT_EXISTS';
+export const ALL_USERS = 'ALL_USERS';
+export const ALL_CONTRIBUTORS = 'ALL_CONTRIBUTORS';

@@ -71,9 +71,6 @@ export const viewOneProject = (token, id, history) => async (dispatch, getState)
       }
     };
     const res = await (await fetch(`${url}/api/project/${id}`, config)).json();
-
-    console.log("res", res);
-
     if (res.status === 200) {
       dispatch({
         type: types.ONE_PROJECT,
@@ -180,6 +177,71 @@ export const allMessagesBetweenUsers = () => async (dispatch, getState) => {
         payload: newMessages
       });
     });
+  }
+};
+
+
+export const fetchUsers = (token, lang, history) => async (dispatch, getState) => {
+
+  try {
+    const config = {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'accept-language': `${lang}`
+      },
+    };
+    const res = await (await fetch(`${url}/api/user/all`, config)).json();
+    if (res.status === 200) {
+      dispatch({
+        type: types.ALL_USERS,
+        payload: res.data
+      });
+    }
+    if (res.status === 401) {
+      history.push('/login');
+    }
+
+    if (res.status === 500) {
+      window.alert('Server Down');
+    }
+
+  } catch (error) {
+    console.log(error);
+  }
+
+};
+
+export const fetchContributors = (token, lang, history, projectId) => async (dispatch, getState) => {
+
+  try {
+    const config = {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'accept-language': `${lang}`
+      },
+    };
+
+    const res = await (await fetch(`${url}/api/contribution/${projectId}`, config)).json();
+
+    if (res.status === 200) {
+      dispatch({
+        type: types.ALL_CONTRIBUTORS,
+        payload: res.data
+      });
+    }
+
+    if (res.status === 401) {
+      history.push('/login');
+    }
+
+    if (res.status === 500) {
+      window.alert('Server Down');
+    }
+
+  } catch (error) {
+    console.log(error);
   }
 };
 

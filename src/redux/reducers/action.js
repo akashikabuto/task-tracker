@@ -8,7 +8,9 @@ const initialState = {
   projectTasks: data,
   socket: null,
   messages: [],
-  projectExists: false
+  projectExists: false,
+  allUsers: [],
+  allContributors: [],
 };
 
 export const taskReducer = (state = initialState, { type, payload }) => {
@@ -50,6 +52,17 @@ export const taskReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         projectExists: true
+      };
+    case types.ALL_USERS:
+      return {
+        ...state,
+        allUsers: payload
+      };
+
+    case types.ALL_CONTRIBUTORS:
+      return {
+        ...state,
+        allContributors: payload
       };
 
     default:

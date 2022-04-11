@@ -28,9 +28,6 @@ export default function OneProject() {
     //eslint-disable-next-line
   }, [locale]);
 
-
-  console.log('oneProject', oneProject);
-
   return (
     <>
       <ProjectCards projectId={id} />

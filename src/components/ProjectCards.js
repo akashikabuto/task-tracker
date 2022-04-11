@@ -21,9 +21,13 @@ export default function ProjectCards({ projectId }) {
     history.push(`/dashboard/chat/${projectId}`);
   }
 
+  function goToCollaborators() {
+    history.push(`/dashboard/collaborators/${projectId}`);
+  }
+
   return (
     <div className='project-cards' >
-      <div className='project-card' >
+      <div className='project-card' onClick={goToCollaborators} >
         <FaUsers className="cards-image" />
         <p> 8 {t("Collaborators")}</p>
       </div>

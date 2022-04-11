@@ -37,7 +37,7 @@ function App() {
           <Route path='/dashboard/chat/:id' component={isLoggedIn(ChatroomPage)} exact />
           <Route path='/dashboard/tasks' component={isLoggedIn(TaskPage)} exact />
           <Route path='/dashboard/newTask' component={isLoggedIn(NewTaskPage)} exact />
-          <Route path='/dashboard/collaborators' component={isLoggedIn(CollboratorsPage)} exact />
+          <Route path='/dashboard/collaborators/:id' component={isLoggedIn(CollboratorsPage)} exact />
           <Route path='*' component={NotFound} exact />
         </Switch>
       </DndProvider>
