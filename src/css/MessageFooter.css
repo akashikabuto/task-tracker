@@ -27,3 +27,7 @@
 .send-m-button {
   font-size: 30px;
 }
+.send-m-button-file{
+  font-size: 30px;
+  padding-left: 10px;
+}

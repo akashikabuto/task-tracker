@@ -46,9 +46,9 @@ export default function Contributor({ userId, users, Contributor }) {
           })}
         </> : ""}
       </div> : <div>
-        <p>You are not the owner of this project <br />so you can't add contributors </p>
-      </div>}
-
+        <p>You are not the owner of this project <br />so you can't add contributors</p>
+      </div>
+      }
     </div>
   );
 }
