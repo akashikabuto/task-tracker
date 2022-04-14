@@ -37,6 +37,7 @@ export default function NewEntry({ projectId }) {
   async function handleSubmit(e) {
     e.preventDefault();
     setLoading(true);
+
     const config = {
       method: "POST",
       headers: {
@@ -75,7 +76,7 @@ export default function NewEntry({ projectId }) {
   return (
     <>
       <form onSubmit={handleSubmit} >
-        {message && <div className="error">{message}</div>}
+        {message && <div className="insert-error"><p>{message}</p></div>}
         <div className='flex' >
           <label>Task name</label>
           <input type='text' placeholder='Task name' className='input'

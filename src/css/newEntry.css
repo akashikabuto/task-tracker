@@ -28,7 +28,10 @@
   background-color: 'white';
   outline-color: #0065ff;
 }
-.error{
+.insert-error{
   padding: 5px;
-  color: 'red';
+}
+.insert-error p{
+  color: red;
+  margin-left: 15px;
 }
