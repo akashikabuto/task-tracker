@@ -25,6 +25,11 @@ export default function ProjectCards({ projectId }) {
     history.push(`/dashboard/collaborators/${projectId}`);
   }
 
+  function goToTasks() {
+    history.push(`/dashboard/tasks/${projectId}`);
+  }
+
+
   return (
     <div className='project-cards' >
       <div className='project-card' onClick={goToCollaborators} >
@@ -35,7 +40,7 @@ export default function ProjectCards({ projectId }) {
         <FaRocketchat className="cards-image" />
         <p>{t("Chat room")}</p>
       </div>
-      <div className='project-card'>
+      <div className='project-card' onClick={goToTasks} >
         <FaTasks className="cards-image" />
         <p>6 {t("Tasks")}</p>
       </div>

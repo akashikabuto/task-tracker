@@ -18,7 +18,7 @@
   border-radius: 20px;
 }
 
-.container {
+.message-container {
   display: flex;
   flex-direction: row;
   align-items: center;

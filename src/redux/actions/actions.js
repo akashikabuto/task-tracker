@@ -245,6 +245,67 @@ export const fetchContributors = (token, lang, history, projectId) => async (dis
   }
 };
 
+export const seeAllTasks = (token, lang, history) => async (dispatch, getState) => {
+
+  try {
+    const config = {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'accept-language': `${lang}`
+      },
+    };
+
+    const res = await (await fetch(`${url}/api/task/all`, config)).json();
+
+    if (res.status === 200) {
+      dispatch({
+        type: types.ALL_TASKS,
+        payload: res.data
+      });
+    }
+    if (res.status === 401) {
+      history.push('/login');
+    }
+
+  } catch (error) {
+    console.log(error);
+  }
+
+
+};
+
+
+export const setTheStatus = (id, token) => async (dispatch, getState) => {
+  const { tasks } = getState();
+  const { allTasks } = tasks;
+  const array = allTasks.filter((task) => task._id === id);
+  let Status;
+
+  array[0].status === 'done' ? array[0].status = 'open' : array[0].status = 'done';
+  const newArray = array.filter((task) => task._id !== id).concat([...allTasks]);
+  array[0].status === 'done' ? Status = 'done' : Status = 'open';
+
+  dispatch({
+    type: types.ALL_TASKS,
+    payload: newArray
+  });
+  const config = {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    }
+  };
+
+  try {
+    fetch(`${url}/api/task/${id}?status=${Status}`, config)
+      .then(() => console.log('ok'));
+  } catch (error) {
+    console.log(error);
+  }
+
+};
+
 
 
 

@@ -7,3 +7,5 @@ export const ALL_MESSAGES = 'ALL_MESSAGES';
 export const PROJECT_EXISTS = 'PROJECT_EXISTS';
 export const ALL_USERS = 'ALL_USERS';
 export const ALL_CONTRIBUTORS = 'ALL_CONTRIBUTORS';
+export const ALL_TASKS = 'ALL_TASKS';
+export const SET_STATUS_TASK = 'SET_STATUS_TASK';

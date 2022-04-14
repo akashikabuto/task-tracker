@@ -32,7 +32,7 @@ export default function MessageFooter({ socket, chatroomId }) {
 
   return (
     <div className='MessageFooter' >
-      <div className='container'  >
+      <div className='message-container'  >
         <input placeholder='Enter Message' value={state.message} className='mess-input' onChange={(e) => setState({ ...state, message: e.target.value })} />
         <IoSend color='white' className='send-m-button' onClick={sendMessage} />
         <Dropzone
