@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import '../css/CoContainer.css';
+import AddContributor from './AddContributor';
 
-export default function Contributor({ userId, users, Contributor }) {
+export default function Contributor({ userId, users, Contributor, projectId }) {
 
   const [Users, setUsers] = useState([]);
   const [Owner, setOwner] = useState('');
@@ -18,16 +19,13 @@ export default function Contributor({ userId, users, Contributor }) {
       setUsers(matchedUsers);
     }
   }
-
   let { ids } = { ids: Contributor.map(x => x.projectOwner) };
-
 
   useEffect(() => {
     let uniq = [...new Set(ids)];
     let owner = (uniq.toString());
     setOwner(owner);
   }, [ids]);
-
 
 
 
@@ -39,10 +37,11 @@ export default function Contributor({ userId, users, Contributor }) {
         />
         {Users.length !== 0 ? <>
           {Users && Users.map((users, idx) => {
-            return <div key={idx} className='searched-contributor' >
-              <p>{users.username}</p>
-              <button className='button' >Add</button>
-            </div>;
+            return <AddContributor key={idx} username={users.username}
+              projectId={projectId}
+              contributor={users._id}
+              contributorEmail={users.email}
+            />;
           })}
         </> : ""}
       </div> : <div>

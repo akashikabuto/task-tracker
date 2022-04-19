@@ -26,7 +26,7 @@ export default function TaskPage() {
   }, [locale]);
 
   useEffect(() => {
-    dispatch(seeAllTasks(token, locale, history));
+    dispatch(seeAllTasks(token, locale, history, id));
     //eslint-disable-next-line
   }, []);
 

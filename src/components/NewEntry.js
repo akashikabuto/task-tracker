@@ -48,7 +48,7 @@ export default function NewEntry({ projectId }) {
       body: JSON.stringify(state)
     };
     try {
-      const res = await (await fetch(`${url}/api/task/add`, config)).json();
+      const res = await (await fetch(`${url}/api/task/add?projectId=${projectId}`, config)).json();
       if (res.status === 201) {
         setLoading(false);
         dispatch(seeAllTasks(token, locale, history));

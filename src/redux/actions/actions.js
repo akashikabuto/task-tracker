@@ -245,7 +245,7 @@ export const fetchContributors = (token, lang, history, projectId) => async (dis
   }
 };
 
-export const seeAllTasks = (token, lang, history) => async (dispatch, getState) => {
+export const seeAllTasks = (token, lang, history, projectId) => async (dispatch, getState) => {
 
   try {
     const config = {
@@ -256,7 +256,7 @@ export const seeAllTasks = (token, lang, history) => async (dispatch, getState) 
       },
     };
 
-    const res = await (await fetch(`${url}/api/task/all`, config)).json();
+    const res = await (await fetch(`${url}/api/task/all?projectId=${projectId}`, config)).json();
 
     if (res.status === 200) {
       dispatch({

@@ -32,7 +32,7 @@ export default function CollboratorsPage() {
       <div className="collaborators-container" >
         <CollaboratorSideBar contributors={allContributors} />
         <div className="main" >
-          <Contributor userId={payload.id} users={allUsers} Contributor={allContributors} />
+          <Contributor userId={payload.id} users={allUsers} Contributor={allContributors} projectId={projectId} />
         </div>
       </div>
     </div>

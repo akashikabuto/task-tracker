@@ -5,12 +5,12 @@
   padding: 10px;
   width: 100%;
   display: flex;
+  justify-content: space-between;
 }
 
 .mess-input {
   border: 1px solid rgb(209, 197, 197);
   padding: 0.7rem 1.5rem;
-  width: 70%;
   transition: all 0.5s;
   margin: 10px;
   margin-left: 19px;
