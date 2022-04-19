@@ -290,6 +290,8 @@ export const setTheStatus = (id, token) => async (dispatch, getState) => {
     type: types.ALL_TASKS,
     payload: newArray
   });
+
+
   const config = {
     method: "PUT",
     headers: {

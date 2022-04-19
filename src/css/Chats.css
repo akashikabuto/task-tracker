@@ -28,6 +28,7 @@
 .right-wrapper {
   display: flex;
   justify-content: flex-end;
+  padding: 7px;
 }
 .scroll{
   height:80%;
@@ -45,4 +46,9 @@
 .scroll::-webkit-scrollbar-thumb {
   background-color: #0065ff;
   outline: 1px solid #0065ff;
+}
+.image-sent{
+  width: 25%;
+  border : 1.5px solid #0065ff;
+  border-radius: 5px;
 }

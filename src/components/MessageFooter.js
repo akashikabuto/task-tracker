@@ -19,24 +19,34 @@ export default function MessageFooter({ socket, chatroomId }) {
     socket.emit("chatroomMessage", {
       chatroomId,
       message: state.message,
-      type
+      type: "text"
     });
     setState({ ...state, message: "" });
   }
 
   const sendMessage = () => {
+    setType('text');
     if (socket) {
-      setType('text');
       emitMessage();
     }
   };
 
-  const sendPicture = () => {
+  const sendPicture = (image) => {
+    setType('image');
+    console.log('type', type);
     if (socket) {
-      setType('image');
-      emitMessage();
+      socket.emit("chatroomMessage", {
+        chatroomId,
+        message: image,
+        type: "image"
+      });
     }
   };
+
+  async function upload(config) {
+    const res = await (await fetch(`${url}`, config)).json();
+    return res.secure_url;
+  }
 
 
   async function uploadFile(file) {
@@ -47,9 +57,8 @@ export default function MessageFooter({ socket, chatroomId }) {
       method: "POST",
       body: formData
     };
-    const res = await (await fetch(`${url}`, config)).json();
-    setState({ ...state, message: res.secure_url });
-    sendPicture();
+    const imageUrl = await upload(config);
+    sendPicture(imageUrl);
   }
 
   function onDrop(file) {

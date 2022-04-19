@@ -44,7 +44,7 @@ export default function Chats({ userId, socket, chatroomId }) {
               (id.toString()) === message.user ? (
                 message.messageType === 'image' ?
                   <div className="right-wrapper">
-                    <img src={message.message} alt='user-message' />
+                    <img src={message.message} alt='user-message' className="image-sent" />
                   </div> :
                   <div className="right-wrapper">
                     <div className="m2" >{message.message} </div>
@@ -53,7 +53,7 @@ export default function Chats({ userId, socket, chatroomId }) {
                 message.messageType === 'image' ?
                   <div className="m1" >
                     <p className="username" >{message.username}</p>
-                    <img src={message.message} alt='pic-mesage' />
+                    <img src={message.message} alt='pic-mesage' className="image-sent" />
                   </div> :
                   <div className="m1" >
                     <p className="username" >{message.username}</p>
