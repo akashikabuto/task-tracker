@@ -37,16 +37,33 @@ export default function Chats({ userId, socket, chatroomId }) {
 
   return (
     <div className="scroll" >
-      {messages.map((message, i) => (
-        <div key={i} className="message" ref={scrollRef}>
-          {(id.toString()) === message.user ? <div className="right-wrapper">
-            <div className="m2" >{message.message} </div>
-          </div> : <div className="m1" >
-            <p className="username" >{message.username}</p>
-            <p>{message.message} </p>
-          </div>}
-        </div>
-      ))}
+      {
+        messages.map((message, i) => (
+          <div key={i} className="message" ref={scrollRef}>
+            {
+              (id.toString()) === message.user ? (
+                message.messageType === 'image' ?
+                  <div className="right-wrapper">
+                    <img src={message.message} alt='user-message' />
+                  </div> :
+                  <div className="right-wrapper">
+                    <div className="m2" >{message.message} </div>
+                  </div>
+              ) : (
+                message.messageType === 'image' ?
+                  <div className="m1" >
+                    <p className="username" >{message.username}</p>
+                    <img src={message.message} alt='pic-mesage' />
+                  </div> :
+                  <div className="m1" >
+                    <p className="username" >{message.username}</p>
+                    <p>{message.message} </p>
+                  </div>
+              )
+            }
+          </div>
+        ))
+      }
       <MessageFooter socket={socket} chatroomId={chatroomId} />
     </div>
   );
