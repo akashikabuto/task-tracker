@@ -279,11 +279,11 @@ export const seeAllTasks = (token, lang, history) => async (dispatch, getState) 
 export const setTheStatus = (id, token) => async (dispatch, getState) => {
   const { tasks } = getState();
   const { allTasks } = tasks;
-  const array = allTasks.filter((task) => task._id === id);
+  const array = allTasks.filter(task => task._id === id);
   let Status;
 
   array[0].status === 'done' ? array[0].status = 'open' : array[0].status = 'done';
-  const newArray = array.filter((task) => task._id !== id).concat([...allTasks]);
+  const newArray = array.filter(task => task._id !== id).concat([...allTasks]);
   array[0].status === 'done' ? Status = 'done' : Status = 'open';
 
   dispatch({

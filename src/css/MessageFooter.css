@@ -4,6 +4,7 @@
   background-color: rgb(38, 38, 236);
   padding: 10px;
   width: 100%;
+  display: flex;
 }
 
 .mess-input {

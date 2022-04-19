@@ -1,7 +1,7 @@
-import React from "react";
+import { Component } from "react";
 import { Redirect } from "react-router-dom";
 
-export const AuthorizationChecker = (WrappedComponent) => class extends React.Component {
+export const AuthorizationChecker = (WrappedComponent) => class extends Component {
   render() {
     const tkn = localStorage.getItem('token');
     const rest = this.props;
