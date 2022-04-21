@@ -41,7 +41,7 @@ function App() {
           <Route path='/dashboard/tasks/:id' component={isLoggedIn(TaskPage)} exact />
           <Route path='/dashboard/newTask/:id' component={isLoggedIn(NewTaskPage)} exact />
           <Route path='/dashboard/collaborators/:id/:name' component={isLoggedIn(CollboratorsPage)} exact />
-          <Route path="/contribution/verify/:id" component={VerificationPage} exact />
+          <Route path="/contribution/verify" component={VerificationPage} exact />
           <Route path='*' component={NotFound} exact />
         </Switch>
       </DndProvider>
