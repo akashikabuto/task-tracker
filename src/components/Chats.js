@@ -3,6 +3,7 @@ import MessageFooter from "./MessageFooter";
 import '../css/Chats.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { getRoomMessages, allMessagesBetweenUsers } from '../redux/actions/actions';
+import Messages from "./Messages";
 
 
 export default function Chats({ userId, socket, chatroomId }) {
@@ -37,33 +38,9 @@ export default function Chats({ userId, socket, chatroomId }) {
 
   return (
     <div className="scroll" >
-      {
-        messages.map((message, i) => (
-          <div key={i} className="message" ref={scrollRef}>
-            {
-              (id.toString()) === message.user ? (
-                message.messageType === 'image' ?
-                  <div className="right-wrapper">
-                    <img src={message.message} alt='user-message' className="image-sent" />
-                  </div> :
-                  <div className="right-wrapper">
-                    <div className="m2" >{message.message} </div>
-                  </div>
-              ) : (
-                message.messageType === 'image' ?
-                  <div className="m1" >
-                    <p className="username" >{message.username}</p>
-                    <img src={message.message} alt='pic-mesage' className="image-sent" />
-                  </div> :
-                  <div className="m1" >
-                    <p className="username" >{message.username}</p>
-                    <p>{message.message} </p>
-                  </div>
-              )
-            }
-          </div>
-        ))
-      }
+      {messages.map((message, i) =>
+        <Messages key={i} userId={id} messages={message} scrollRef={scrollRef} />
+      )}
       <MessageFooter socket={socket} chatroomId={chatroomId} />
     </div>
   );

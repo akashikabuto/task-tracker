@@ -1,0 +1,14 @@
+.verification-page{
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+.verification-card{
+  margin: 0 auto;
+  background-color: dodgerblue;
+  padding: 10px;
+  text-align: center;
+  width: 50%;
+  color: white;
+  
+}

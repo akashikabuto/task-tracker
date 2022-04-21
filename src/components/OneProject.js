@@ -9,7 +9,7 @@ import ProjectChart from "./ProjectChart";
 import ProjectDetails from "./ProjectDetails";
 import '../css/oneProject.css';
 
-export default function OneProject() {
+export default function OneProject({ projectName }) {
 
   const token = localStorage.getItem('token');
   const history = useHistory();
@@ -30,7 +30,7 @@ export default function OneProject() {
 
   return (
     <>
-      <ProjectCards projectId={id} />
+      <ProjectCards projectId={id} projectName={projectName} />
       <div>
         <ProjectDetails id={oneProject._id} projectName={oneProject.name} />
       </div>

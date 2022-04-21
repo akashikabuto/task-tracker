@@ -11,8 +11,9 @@ import { FaFileImage } from "react-icons/fa";
 export default function MessageFooter({ socket, chatroomId }) {
 
 
-  const [state, setState] = useState({ message: "" });
-  const [type, setType] = useState('');
+  const [state, setState] = useState({
+    message: "",
+  });
   const url = `https://api.cloudinary.com/v1_1/akashi/upload`;
 
   function emitMessage() {
@@ -25,15 +26,12 @@ export default function MessageFooter({ socket, chatroomId }) {
   }
 
   const sendMessage = () => {
-    setType('text');
     if (socket) {
       emitMessage();
     }
   };
 
-  const sendPicture = (image) => {
-    setType('image');
-    console.log('type', type);
+  const sendPicture = image => {
     if (socket) {
       socket.emit("chatroomMessage", {
         chatroomId,

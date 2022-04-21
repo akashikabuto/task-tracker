@@ -6,7 +6,7 @@ import '../css/projectCard.css';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 
-export default function ProjectCards({ projectId }) {
+export default function ProjectCards({ projectId, projectName }) {
 
   const { t, i18n } = useTranslation();
   const locale = localStorage.getItem("lang") || "eng";
@@ -22,7 +22,7 @@ export default function ProjectCards({ projectId }) {
   }
 
   function goToCollaborators() {
-    history.push(`/dashboard/collaborators/${projectId}`);
+    history.push(`/dashboard/collaborators/${projectId}/${projectName}`);
   }
 
   function goToTasks() {

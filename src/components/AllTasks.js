@@ -8,13 +8,13 @@ export default function AllTasks({ id, name }) {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  function navigateToTaskaddTask(id) {
+  function navigateToTaskaddTask(id, projectName) {
     dispatch(toogleSideBar());
-    history.push(`/dashboard/project/${id}`);
+    history.push(`/dashboard/project/${id}/${projectName}`);
   }
   return (
     <div key={id} className="task-container"  >
-      <p onClick={() => navigateToTaskaddTask(id)}>{name} </p>
+      <p onClick={() => navigateToTaskaddTask(id, name)}>{name} </p>
     </div>
   );
 }

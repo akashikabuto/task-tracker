@@ -11,7 +11,7 @@ import { fetchUsers, fetchContributors } from "../redux/actions/actions";
 
 export default function CollboratorsPage() {
 
-  const { id: projectId } = useParams();
+  const { id: projectId, name: projectName } = useParams();
   const payload = jwt_decode(localStorage.getItem('token'));
   const history = useHistory();
   const dispatch = useDispatch();
@@ -32,7 +32,7 @@ export default function CollboratorsPage() {
       <div className="collaborators-container" >
         <CollaboratorSideBar contributors={allContributors} />
         <div className="main" >
-          <Contributor userId={payload.id} users={allUsers} Contributor={allContributors} projectId={projectId} />
+          <Contributor userId={payload.id} users={allUsers} Contributor={allContributors} projectId={projectId} projectName={projectName} />
         </div>
       </div>
     </div>

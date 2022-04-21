@@ -7,6 +7,7 @@ import NotFound from './components/NotFound';
 import { AuthorizationChecker as isLoggedIn } from './components/Private';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend as Backend } from 'react-dnd-html5-backend';
+import VerificationPage from './pages/VerificationPage';
 
 
 
@@ -23,6 +24,8 @@ const NewTaskPage = lazy(() => import('./pages/NewTask'));
 const CollboratorsPage = lazy(() => import('./pages/CollboratorsPage'));
 
 
+
+
 function App() {
   return (
     <Provider store={store} >
@@ -33,11 +36,12 @@ function App() {
           <Route path="/signup" component={SignUpPage} exact />
           <Route path="/dashboard" component={isLoggedIn(DashboardPage)} exact />
           <Route path="/dashboard/addTask" component={isLoggedIn(AddTaskPage)} exact />
-          <Route path="/dashboard/project/:id" component={isLoggedIn(ProjectPage)} exact />
+          <Route path="/dashboard/project/:id/:name" component={isLoggedIn(ProjectPage)} exact />
           <Route path='/dashboard/chat/:id' component={isLoggedIn(ChatroomPage)} exact />
           <Route path='/dashboard/tasks/:id' component={isLoggedIn(TaskPage)} exact />
           <Route path='/dashboard/newTask/:id' component={isLoggedIn(NewTaskPage)} exact />
-          <Route path='/dashboard/collaborators/:id' component={isLoggedIn(CollboratorsPage)} exact />
+          <Route path='/dashboard/collaborators/:id/:name' component={isLoggedIn(CollboratorsPage)} exact />
+          <Route path="/contribution/verify/:id" component={VerificationPage} exact />
           <Route path='*' component={NotFound} exact />
         </Switch>
       </DndProvider>

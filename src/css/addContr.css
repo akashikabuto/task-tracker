@@ -1,0 +1,10 @@
+.add-contri-button{
+  background: #0065ff;
+  border: 1px solid transparent;
+  padding: 0.5rem 1.5rem;
+  border-radius: 5px;
+  width: fit-content;
+  text-transform: uppercase;
+  color: white;
+
+}
