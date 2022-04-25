@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next';
 
 
 
-export default function SideBar() {
+export default function SideBar({ locale }) {
 
   const { sideBarStatus } = useSelector(state => state.tasks);
   const history = useHistory();
@@ -22,7 +22,6 @@ export default function SideBar() {
     dispatch(toogleSideBar());
     history.push('/dashboard/addTask');
   }
-  const locale = localStorage.getItem("lang") || "eng";
 
   const { t, i18n } = useTranslation();
 

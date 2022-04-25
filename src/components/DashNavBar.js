@@ -8,14 +8,16 @@ import { toogleSideBar } from '../redux/actions/actions';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import Switcher from './Switcher';
+import jwt_decode from "jwt-decode";
 
 
 
-export default function DashNavBar() {
+
+export default function DashNavBar({ token, locale }) {
 
   const { t, i18n } = useTranslation();
-  const locale = localStorage.getItem("lang") || "eng";
   const history = useHistory();
+  const payload = jwt_decode(token);
 
   useEffect(() => {
     i18n.changeLanguage(locale);
@@ -41,8 +43,8 @@ export default function DashNavBar() {
         </NavLink>
       </div>
       <div className='dash-nav-links'>
-        <p>Akashi</p>
-        <p><img src={userLogo} alt="userLogo" className='dashboard-photo' /></p>
+        <p>{payload.username}</p>
+        <p><img src={payload.profilePic === undefined ? userLogo : payload.profilePic} alt="userLogo" className='dashboard-photo' /></p>
         <p onClick={logOut} >{t("Log_out")}</p>
         <Switcher />
       </div>

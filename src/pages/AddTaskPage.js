@@ -2,12 +2,12 @@ import SideBar from "../components/SideBar";
 import DashNavBar from "../components/DashNavBar";
 import AddTask from "../components/AddTask";
 
-export default function AddTaskPage() {
+export default function AddTaskPage({ token, locale }) {
   return (
     <div className="dashboard" >
-      <DashNavBar />
+      <DashNavBar token={token} locale={locale} />
       <div className="dashboard-container" >
-        <SideBar />
+        <SideBar locale={locale} />
         <div className="main" >
           <AddTask />
         </div>

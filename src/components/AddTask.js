@@ -10,7 +10,7 @@ import '../css/addTask.css';
 
 
 
-export default function AddTask() {
+export default function AddTask({ locale }) {
 
   const initialState = {
     name: "",
@@ -25,7 +25,6 @@ export default function AddTask() {
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
   const token = localStorage.getItem("token");
-  const locale = localStorage.getItem("lang") || "eng";
   const [state, setState] = useState(initialState);
 
   function handleCreateProject(e) {

@@ -61,19 +61,19 @@ export default function MessageFooter({ socket, chatroomId }) {
 
   function onDrop(file) {
     uploadFile(file[0]);
+
   }
 
 
   return (
     <div className='MessageFooter' >
       <div className='message-container'  >
-        <input placeholder='Enter Message' value={state.message} className='mess-input' onChange={(e) => setState({ ...state, message: e.target.value })} />
+        <input placeholder='Enter Message' value={state.message} className='mess-input'
+          onChange={(e) => setState({ ...state, message: e.target.value })} />
         <IoSend color='white' className='send-m-button' onClick={sendMessage} />
-        <Dropzone multiple={false} accept="image/*"
-          onDrop={onDrop}
-        >
+        <Dropzone multiple={false} accept="image/*" onDrop={onDrop}>
           {({ getRootProps, getInputProps }) => (
-            <div {...getRootProps({ className: "dropzone" })}>
+            <div {...getRootProps()}>
               <input {...getInputProps()} />
               <FaFileImage className='send-m-button-file' color='white' />
             </div>

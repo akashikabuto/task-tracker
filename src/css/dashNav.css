@@ -16,6 +16,9 @@
 .dash-nav-links p {
   padding: 2px 8px;
 }
+.dashboard-photo {
+  width: 30px;
+}
 
 .dash-nav-links p:hover {
   cursor: pointer;

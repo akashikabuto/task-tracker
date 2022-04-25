@@ -10,11 +10,10 @@ import { useParams } from "react-router-dom";
 import { seeAllTasks } from "../redux/actions/actions";
 
 
-export default function TaskPage() {
+export default function TaskPage({ token, locale }) {
 
-  const locale = localStorage.getItem("lang") || "eng";
+
   const { allTasks } = useSelector(state => state.tasks);
-  const token = localStorage.getItem("token");
   const { t, i18n } = useTranslation();
   const history = useHistory();
   const { id } = useParams();
@@ -36,7 +35,7 @@ export default function TaskPage() {
 
   return (
     <div className="taskpage" >
-      <DashNavBar />
+      <DashNavBar token={token} locale={locale} />
       <div className="button-wrapper" >
         <button className="add-button" onClick={goToAddTasks}  >{t("AddTask")}</button>
       </div>

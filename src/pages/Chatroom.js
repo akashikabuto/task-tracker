@@ -8,14 +8,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 
-export default function Chatroom() {
+export default function Chatroom({ token, locale }) {
 
   const dispatch = useDispatch();
   const { socket } = useSelector(state => state.tasks);
   const { id: chatroomId } = useParams();
-
-  const payload = jwt_decode(localStorage.getItem('token'));
-
+  const payload = jwt_decode(token);
   const [userId, setUserId] = useState("");
 
   useEffect(() => {
@@ -48,7 +46,7 @@ export default function Chatroom() {
 
   return (
     <div className='chatroom' >
-      <DashNavBar />
+      <DashNavBar token={token} locale={locale} />
       <div className='chatroom-container' >
         <ChatGroupPeople />
         <div className='chats' >

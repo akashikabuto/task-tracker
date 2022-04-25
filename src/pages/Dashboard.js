@@ -7,11 +7,11 @@ import DashboardChart from "../components/DashboardChart";
 
 
 
-export default function Dashboard() {
+export default function Dashboard({ token, locale }) {
 
   return (
     <div className="dashboard" >
-      <DashNavBar />
+      <DashNavBar token={token} locale={locale} />
       <div className="dashboard-container" >
         <SideBar />
         <div className="main" >

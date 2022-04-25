@@ -9,15 +9,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchUsers, fetchContributors } from "../redux/actions/actions";
 
 
-export default function CollboratorsPage() {
+export default function CollboratorsPage({ token, locale }) {
 
   const { id: projectId, name: projectName } = useParams();
-  const payload = jwt_decode(localStorage.getItem('token'));
+  const payload = jwt_decode(token);
   const history = useHistory();
   const dispatch = useDispatch();
   const { allUsers, allContributors } = useSelector(state => state.tasks);
-  const locale = localStorage.getItem("lang") || "eng";
-  const token = localStorage.getItem("token");
 
   useEffect(() => {
     dispatch(fetchUsers(token, locale, history));
@@ -28,7 +26,7 @@ export default function CollboratorsPage() {
 
   return (
     <div className="whole" >
-      <DashNavBar />
+      <DashNavBar token={token} locale={locale} />
       <div className="collaborators-container" >
         <CollaboratorSideBar contributors={allContributors} />
         <div className="main" >

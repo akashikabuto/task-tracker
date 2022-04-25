@@ -43,9 +43,7 @@ html{
   outline-color: #0065ff;
 }
 
-.dashboard-photo {
-  width: 30px;
-}
+
 
 .dashboard-container {
   display: flex;
