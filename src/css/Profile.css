@@ -10,10 +10,11 @@
   right: 0%;
   width: calc(100% - 50%);
   height: 100%;
+  overflow-y: auto;
 }
 .left-panel{
   display: flex;
-  background-color: red;
+  background-color: whitesmoke;
   height: 100%;
   padding: 5px;
   position: fixed;
@@ -22,6 +23,7 @@
 }
 .profile-photo{
   width: 80%;
+  border-radius: 50%;
 }
 .user-profile-photo{
   display: flex;
@@ -31,11 +33,11 @@
   align-items: center;
 }
 .Camera{
-  color: white;
+  color: dodgerblue;
   font-size: 3rem;
   position: absolute;
   bottom: 10px;
-  right: 10rem;
+  right: 5rem;
 }
 .crop-image{
   width: fit-content;
@@ -44,4 +46,28 @@
 .uploaded{
   width: fit-content;
   height: fit-content;
+}
+.crop-container{
+  width: 100%;
+  margin: 0 auto;
+}
+.c-image{
+width: 50%;
+padding: 10px;
+}
+.finalImage{
+  padding: 5px;
+  
+}
+.send-picture{
+  background: #0065ff;
+  border: 1px solid transparent;
+  padding: 0.5rem 1.5rem;
+  border-radius: 5px;
+  width: 80%;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  margin-left: 10px;
+  color: white;
+  margin-top: 10px;
 }

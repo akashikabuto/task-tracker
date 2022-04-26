@@ -6,7 +6,7 @@ export default function Profile({ token, locale }) {
   return (
     <div className='profile' >
       <DashNavBar token={token} locale={locale} />
-      <ProfileComponent token={token} />
+      <ProfileComponent token={token} locale={locale} />
     </div>
   );
 }

@@ -1,76 +1,131 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import jwtDecode from "jwt-decode";
 import userLogo from '../images/user.png';
 import { FaCamera } from "react-icons/fa";
 import Dropzone from "react-dropzone";
 import ReactCrop from 'react-image-crop';
-
+import { useHistory } from "react-router-dom";
 import 'react-image-crop/dist/ReactCrop.css';
 
-export default function ProfileComponent({ token }) {
+export default function ProfileComponent({ token, locale }) {
+
+  let url = `https://mern-learning-task-tracker.herokuapp.com`;
 
   const payload = jwtDecode(token);
   const [file, setFile] = useState(null);
   const [crop, setCrop] = useState({
-    unit: 'px', // Can be 'px' or '%'
+    unit: '%', // Can be 'px' or '%'
     x: 25,
     y: 25,
     width: 50,
-    height: 50
+    height: 50,
   });
   const [outPut, setOutput] = useState(null);
+  const [imageRef, setImageRef] = useState('');
+  const [user, setUser] = useState({});
+  const history = useHistory();
 
 
   const onDrop = file => {
-    // const reader = new FileReader();
-    // reader.addEventListener('load', () =>
-    //   setFile(reader.result),
-    // );
-    // reader.readAsDataURL(file[0]);
-    const objectUrl = URL.createObjectURL(file[0]);
-    setFile(objectUrl);
-
+    const reader = new FileReader();
+    reader.addEventListener('load', () =>
+      setFile(reader.result)
+    );
+    reader.readAsDataURL(file[0]);
   };
-  const onChange = (crop, percentCrop) => {
+  const onChange = (crop) => {
     setCrop(crop);
   };
 
+  function cropImage(crop) {
+    if (imageRef && crop.width && crop.height) {
+      const croppedImage = getCroppedImage(
+        imageRef,
+        crop
+      );
+      setOutput(croppedImage);
+    }
+  }
 
-  const onComplete = e => {
-
-    const image = new Image();
-    image.src = file;
-
+  function getCroppedImage(sourceImage, pixelCrop) {
     const canvas = document.createElement('canvas');
-    const scaleX = image.naturalWidth / image.width;
-    const scaleY = image.naturalHeight / image.height;
-    canvas.width = crop.width;
-    canvas.height = crop.height;
-
+    const scaleX = sourceImage.naturalWidth / sourceImage.width;
+    const scaleY = sourceImage.naturalHeight / sourceImage.height;
+    canvas.width = pixelCrop.width;
+    canvas.height = pixelCrop.height;
     const ctx = canvas.getContext('2d');
-    const pixelRatio = window.devicePixelRatio;
-    canvas.width = crop.width * pixelRatio;
-    canvas.height = crop.height * pixelRatio;
-    ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
-    ctx.imageSmoothingQuality = 'high';
-
 
     ctx.drawImage(
-      image,
-      crop.x * scaleX,
-      crop.y * scaleY,
-      crop.width * scaleX,
-      crop.height * scaleY,
+      sourceImage,
+      pixelCrop.x * scaleX,
+      pixelCrop.y * scaleY,
+      pixelCrop.width * scaleX,
+      pixelCrop.height * scaleY,
       0,
       0,
-      crop.width,
-      crop.height,
+      pixelCrop.width,
+      pixelCrop.height
     );
 
-    // Converting to base64
-    const base64Image = canvas.toDataURL('image/jpeg');
-    setOutput(base64Image);
-  };
+    return canvas.toDataURL('image/jpeg', 1);
+  }
+
+  async function getUserProfile() {
+    const config = {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "accept-language": locale
+      }
+    };
+    const res = await (await fetch(`${url}/api/user/${payload.id}`, config)).json();
+    if (res.status === 200) {
+      setUser(res.data);
+    }
+    if (res.status === 401) {
+      history.push('/login');
+    }
+  }
+
+  useEffect(() => {
+    getUserProfile();
+    //eslint-disable-next-line
+  }, [user]);
+
+
+
+
+  async function updateProfile() {
+
+    const formData = { image: outPut };
+
+    const config = {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "accept-language": locale
+      },
+      body: formData
+    };
+
+    console.log(config);
+
+    const res = await (await fetch(`${url}/api/user/change-profilePicture`, config)).json();
+
+    console.log(res);
+
+    if (res.status === 200) {
+      getUserProfile();
+    }
+    if (res.status === 401) {
+      history.push('/login');
+    }
+    if (res.status === 422) {
+      alert(JSON.stringify(res));
+    }
+
+  }
+
 
   return (
     <div className="profile-component" >
@@ -78,7 +133,7 @@ export default function ProfileComponent({ token }) {
         <div className="user-info-profile">
           <h4>Profile</h4>
           <div className="user-profile-photo" >
-            <img src={payload.profilePic === undefined ? userLogo : payload.profilePic} alt="user-profile-Logo" className='profile-photo' />
+            <img src={payload.profilePic === undefined ? userLogo : user.profilePic} alt="user-profile-Logo" className='profile-photo' />
             <Dropzone multiple={false} accept="image/*" onDrop={onDrop} >
               {({ getRootProps, getInputProps }) => (
                 <div {...getRootProps()}>
@@ -88,18 +143,31 @@ export default function ProfileComponent({ token }) {
               )}
             </Dropzone>
           </div>
-          <p> {payload.email} </p>
-          <p> {payload.username} </p>
+          <p> {user.email} </p>
+          <p> {user.username} </p>
+          <br />
+          {outPut && <button className="send-picture" onClick={updateProfile}  >Uplaod image</button>}
         </div>
       </div>
       <div className="right-panel">
-        {file &&
-          <ReactCrop crop={crop} onChange={onChange} className="crop-image"  >
-            <img src={file} alt="user-profile-Logo" className='profile-photo-crop' />
-          </ReactCrop>
-        }
-        {outPut && <img src={outPut} alt="user-profile-Logo" />}
-        {file && <button onClick={onComplete} >Done</button>}
+        <div className="c-image" >
+          {file &&
+            <div className="crop-container" >
+              <ReactCrop
+                src={file}
+                className="crop-image"
+                crop={crop} onChange={onChange}
+                ruleOfThirds
+                onComplete={(cropConfig) => cropImage(cropConfig)}
+                onImageLoaded={(imageRef) => setImageRef(imageRef)}
+              />
+            </div>
+          }
+        </div>
+        {outPut && <div className="finalImage" >
+          <img src={outPut} alt="user-profile-Logo" />
+        </div>}
+
       </div>
     </div>
   );
