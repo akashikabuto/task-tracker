@@ -55,9 +55,7 @@ export default function Chatroom({ token, locale }) {
       <div className='chatroom-container' >
         <ChatGroupPeople contributors={allContributors} projectName={projectName} />
         <div className='chats' >
-          <div className='chat-wrapper' >
-            <Chats userId={userId} chatroomId={chatroomId} socket={socket} />
-          </div>
+          <Chats userId={userId} chatroomId={chatroomId} socket={socket} />
         </div>
       </div>
     </div>

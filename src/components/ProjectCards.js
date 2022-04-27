@@ -5,12 +5,15 @@ import { FaTasks } from 'react-icons/fa';
 import '../css/projectCard.css';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 
 export default function ProjectCards({ projectId, projectName }) {
 
   const { t, i18n } = useTranslation();
   const locale = localStorage.getItem("lang") || "eng";
   const history = useHistory();
+  const { allTasks, messages, allContributors } = useSelector(state => state.tasks);
 
   useEffect(() => {
     i18n.changeLanguage(locale);
@@ -34,15 +37,15 @@ export default function ProjectCards({ projectId, projectName }) {
     <div className='project-cards' >
       <div className='project-card' onClick={goToCollaborators} >
         <FaUsers className="cards-image" />
-        <p> 8 {t("Collaborators")}</p>
+        <p> {allContributors.length} {t("Collaborators")}</p>
       </div>
       <div className='project-card' onClick={goToChatRoom} >
         <FaRocketchat className="cards-image" />
-        <p>{t("Chat room")}</p>
+        <p> {messages.length} {t("Chat room")}</p>
       </div>
       <div className='project-card' onClick={goToTasks} >
         <FaTasks className="cards-image" />
-        <p>6 {t("Tasks")}</p>
+        <p> {allTasks.length} {t("Tasks")}</p>
       </div>
     </div>
   );

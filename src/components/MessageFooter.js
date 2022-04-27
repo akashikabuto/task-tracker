@@ -71,15 +71,16 @@ export default function MessageFooter({ socket, chatroomId }) {
         <input placeholder='Enter Message' value={state.message} className='mess-input'
           onChange={(e) => setState({ ...state, message: e.target.value })} />
         <IoSend color='white' className='send-m-button' onClick={sendMessage} />
-        <Dropzone multiple={false} accept="image/*" onDrop={onDrop}>
+        <Dropzone multiple={false} accept="image/*" onDrop={onDrop}  >
           {({ getRootProps, getInputProps }) => (
-            <div {...getRootProps()}>
+            <div {...getRootProps()} className='k'>
               <input {...getInputProps()} />
               <FaFileImage className='send-m-button-file' color='white' />
             </div>
           )}
         </Dropzone>
       </div>
+
     </div>
   );
 }

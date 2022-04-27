@@ -24,7 +24,7 @@ export default function Chats({ userId, socket, chatroomId }) {
   const scrollRef = useRef();
 
   const scrollToBottom = () => {
-    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+    scrollRef.current?.scrollIntoView({ behavior: "smooth", bottom: 0 });
   };
 
   useEffect(() => {
@@ -37,11 +37,13 @@ export default function Chats({ userId, socket, chatroomId }) {
 
 
   return (
-    <div className="scroll" >
-      {messages.map((message, i) =>
-        <Messages key={i} userId={id} messages={message} scrollRef={scrollRef} />
-      )}
+    <>
+      <div className="scroll" >
+        {messages.map((message, i) =>
+          <Messages key={i} userId={id} messages={message} scrollRef={scrollRef} />
+        )}
+      </div>
       <MessageFooter socket={socket} chatroomId={chatroomId} />
-    </div>
+    </>
   );
 }

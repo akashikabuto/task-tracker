@@ -34,8 +34,11 @@
   height:80%;
   display: flex;
   flex-direction: column;
-  padding-bottom: 10px;
+  padding-bottom: 2rem;
   overflow-y: auto;
+  position: fixed;
+  width: calc(100% - 240px);
+  right: 0;
 }
 .scroll::-webkit-scrollbar {
   width: 10px;
@@ -48,7 +51,6 @@
   outline: 1px solid #0065ff;
 }
 .image-sent{
-  width: 25%;
-  border : 1.5px solid #0065ff;
+  height: 150px;
   border-radius: 5px;
 }

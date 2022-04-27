@@ -4,8 +4,6 @@
   background-color: rgb(38, 38, 236);
   padding: 10px;
   width: 100%;
-  display: flex;
-  justify-content: space-between;
 }
 
 .mess-input {
@@ -13,20 +11,22 @@
   padding: 0.7rem 1.5rem;
   transition: all 0.5s;
   margin: 10px;
-  margin-left: 19px;
   background-color: 'white';
   outline-color: white;
   border-radius: 20px;
+  width: 80%;
 }
 
 .message-container {
   display: flex;
   flex-direction: row;
   align-items: center;
+  width: 80%;
 }
 
 .send-m-button {
   font-size: 30px;
+  margin-left: 10px;
 }
 .send-m-button-file{
   font-size: 30px;

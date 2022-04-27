@@ -35,7 +35,9 @@ export default function CollboratorsPage({ token, locale }) {
       <div className="collaborators-container" >
         <CollaboratorSideBar contributors={allContributors} />
         <div className="main" >
-          <Contributor userId={payload.id} users={allUsers} Contributor={allContributors} projectId={projectId} projectName={projectName} />
+          <Contributor userId={payload.id} users={allUsers}
+            Contributor={allContributors}
+            projectId={projectId} projectName={projectName} />
         </div>
       </div>
     </div>
