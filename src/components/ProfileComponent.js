@@ -135,8 +135,9 @@ export default function ProfileComponent({ token, locale, User }) {
               )}
             </Dropzone>
           </div>
-          <p> {User.email} </p>
-          <p> {User.username} </p>
+          <br />
+          <p className="email-y"> {User.email} </p>
+          <p className="email-y"> {User.username} </p>
           <br />
           {outPut && <button className="send-picture" onClick={updateProfile}  >{loading ? "loading" : "Uplaod image"}</button>}
         </div>

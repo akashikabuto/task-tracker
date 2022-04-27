@@ -6,6 +6,7 @@ import '../css/projectCard.css';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+;
 
 
 export default function ProjectCards({ projectId, projectName }) {
@@ -31,6 +32,7 @@ export default function ProjectCards({ projectId, projectName }) {
   function goToTasks() {
     history.push(`/dashboard/tasks/${projectId}`);
   }
+
 
 
   return (

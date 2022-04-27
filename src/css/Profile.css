@@ -4,6 +4,9 @@
 .profile-component{
   display: flex;
 }
+.email-y{
+  font-weight: 800;
+}
 .right-panel{
   padding: 10px;
   position: fixed;
