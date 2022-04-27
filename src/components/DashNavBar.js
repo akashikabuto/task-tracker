@@ -13,23 +13,26 @@ import jwt_decode from "jwt-decode";
 
 
 
-export default function DashNavBar({ token, locale }) {
+
+export default function DashNavBar({ token, locale, User }) {
 
   const { t, i18n } = useTranslation();
   const history = useHistory();
   const payload = jwt_decode(token);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     i18n.changeLanguage(locale);
     //eslint-disable-next-line
   }, [locale]);
 
+
+
   function logOut() {
     localStorage.removeItem("token");
     history.push('/login');
   }
 
-  const dispatch = useDispatch();
   const toogleSideBarState = () => dispatch(toogleSideBar());
   return (
     <div className='dash-nav'>
@@ -43,8 +46,8 @@ export default function DashNavBar({ token, locale }) {
         </NavLink>
       </div>
       <div className='dash-nav-links'>
-        <p>{payload.username}</p>
-        <p><img src={payload.profilePic === undefined ? userLogo : payload.profilePic} alt="userLogo" className='dashboard-photo' /></p>
+        <p onClick={() => history.push('/dashboard/profile')} >{payload.username}</p>
+        <p><img src={User.image === undefined || '' ? userLogo : User.image} alt="userLogo" className='dashboard-photo' /></p>
         <p onClick={logOut} >{t("Log_out")}</p>
         <Switcher />
       </div>

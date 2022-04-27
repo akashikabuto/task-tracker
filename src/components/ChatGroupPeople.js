@@ -1,26 +1,19 @@
 import userLogo from '../images/user.png';
 import '../css/ChatGroup.css';
 
-export default function ChatGroupPeople() {
+export default function ChatGroupPeople({ contributors, projectName }) {
+
+
   return (
     <div className='chat-people' >
-      <h3>Project : kukushi</h3>
+      <h3>Project : {projectName} </h3>
       <h4>Contributors</h4>
-      <div className='ch-people' >
-        <img src={userLogo} alt='user-pic' className='user-pic' />
-        <p>Akashi</p>
-      </div>
-      <div className='ch-people'>
-        <img src={userLogo} alt='user-pic' className='user-pic' />
-        <p>Aomine</p>
-      </div>
-      <div className='ch-people'>
-        <img src={userLogo} alt='user-pic' className='user-pic' />
-        <p>Gojo</p>
-      </div>
-      <div className='ch-people'><img src={userLogo} alt='user-pic' className='user-pic' />
-        <p>Jojo</p>
-      </div>
+      {contributors.length !== 0 ? contributors.map((res, idx) => {
+        return <div key={idx} className='ch-people' >
+          <img src={userLogo} alt='user-pic' className='user-pic' />
+          <p>{res.contributorName}</p>
+        </div>;
+      }) : <p>0 contributors</p>}
     </div>
   );
 }

@@ -18,7 +18,7 @@ export default function ProjectCards({ projectId, projectName }) {
   }, [locale]);
 
   function goToChatRoom() {
-    history.push(`/dashboard/chat/${projectId}`);
+    history.push(`/dashboard/chat/${projectId}/${projectName}`);
   }
 
   function goToCollaborators() {

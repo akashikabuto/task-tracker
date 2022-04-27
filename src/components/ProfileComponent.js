@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import jwtDecode from "jwt-decode";
 import userLogo from '../images/user.png';
 import { FaCamera } from "react-icons/fa";
@@ -6,10 +6,14 @@ import Dropzone from "react-dropzone";
 import ReactCrop from 'react-image-crop';
 import { useHistory } from "react-router-dom";
 import 'react-image-crop/dist/ReactCrop.css';
+import { useDispatch } from "react-redux";
+import { UserProfile } from "../redux/actions/actions";
 
-export default function ProfileComponent({ token, locale }) {
+export default function ProfileComponent({ token, locale, User }) {
 
   let url = `https://mern-learning-task-tracker.herokuapp.com`;
+
+  const dispatch = useDispatch();
 
   const payload = jwtDecode(token);
   const [file, setFile] = useState(null);
@@ -22,8 +26,10 @@ export default function ProfileComponent({ token, locale }) {
   });
   const [outPut, setOutput] = useState(null);
   const [imageRef, setImageRef] = useState('');
-  const [user, setUser] = useState({});
   const history = useHistory();
+  const [loading, setLoading] = useState(false);
+
+
 
 
   const onDrop = file => {
@@ -70,34 +76,17 @@ export default function ProfileComponent({ token, locale }) {
     return canvas.toDataURL('image/jpeg', 1);
   }
 
-  async function getUserProfile() {
-    const config = {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "accept-language": locale
-      }
-    };
-    const res = await (await fetch(`${url}/api/user/${payload.id}`, config)).json();
-    if (res.status === 200) {
-      setUser(res.data);
-    }
-    if (res.status === 401) {
-      history.push('/login');
-    }
-  }
-
-  useEffect(() => {
-    getUserProfile();
-    //eslint-disable-next-line
-  }, [user]);
 
 
 
 
   async function updateProfile() {
 
-    const formData = { image: outPut };
+    setLoading(true);
+    const formData = new FormData();
+    const blob = await fetch(outPut).then(res => res.blob());
+
+    formData.append('image', blob);
 
     const config = {
       method: "PUT",
@@ -108,19 +97,20 @@ export default function ProfileComponent({ token, locale }) {
       body: formData
     };
 
-    console.log(config);
-
     const res = await (await fetch(`${url}/api/user/change-profilePicture`, config)).json();
 
-    console.log(res);
-
     if (res.status === 200) {
-      getUserProfile();
+      setLoading(false);
+      setFile('');
+      setOutput('');
+      dispatch(UserProfile(history, token, locale, payload.id));
+
     }
     if (res.status === 401) {
       history.push('/login');
     }
     if (res.status === 422) {
+      setLoading(false);
       alert(JSON.stringify(res));
     }
 
@@ -132,8 +122,10 @@ export default function ProfileComponent({ token, locale }) {
       <div className="left-panel">
         <div className="user-info-profile">
           <h4>Profile</h4>
-          <div className="user-profile-photo" >
-            <img src={payload.profilePic === undefined ? userLogo : user.profilePic} alt="user-profile-Logo" className='profile-photo' />
+          <br />
+          <div className={"user-profile-photo"}>
+            <img src={User.image === undefined || '' ? userLogo : User.image} alt="user-profile-Logo"
+              className={User.image === undefined || '' ? 'profile-photo-null' : 'profile-photo'} />
             <Dropzone multiple={false} accept="image/*" onDrop={onDrop} >
               {({ getRootProps, getInputProps }) => (
                 <div {...getRootProps()}>
@@ -143,20 +135,21 @@ export default function ProfileComponent({ token, locale }) {
               )}
             </Dropzone>
           </div>
-          <p> {user.email} </p>
-          <p> {user.username} </p>
+          <p> {User.email} </p>
+          <p> {User.username} </p>
           <br />
-          {outPut && <button className="send-picture" onClick={updateProfile}  >Uplaod image</button>}
+          {outPut && <button className="send-picture" onClick={updateProfile}  >{loading ? "loading" : "Uplaod image"}</button>}
         </div>
       </div>
       <div className="right-panel">
-        <div className="c-image" >
+        <div className="cimage" >
           {file &&
             <div className="crop-container" >
               <ReactCrop
                 src={file}
                 className="crop-image"
-                crop={crop} onChange={onChange}
+                crop={crop}
+                onChange={onChange}
                 ruleOfThirds
                 onComplete={(cropConfig) => cropImage(cropConfig)}
                 onImageLoaded={(imageRef) => setImageRef(imageRef)}

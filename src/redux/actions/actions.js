@@ -308,6 +308,26 @@ export const setTheStatus = (id, token) => async (dispatch, getState) => {
 
 };
 
+export const UserProfile = (history, token, locale, Id) => async (dispatch, getState) => {
+  const config = {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "accept-language": locale
+    }
+  };
+  const res = await (await fetch(`${url}/api/user/${Id}`, config)).json();
+  if (res.status === 200) {
+    dispatch({
+      type: types.USER_PROFILE,
+      payload: res.data
+    });
+  }
+  if (res.status === 401) {
+    history.push('/login');
+  }
+};
+
 
 
 

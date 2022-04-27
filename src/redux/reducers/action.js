@@ -11,7 +11,8 @@ const initialState = {
   projectExists: false,
   allUsers: [],
   allContributors: [],
-  allTasks: []
+  allTasks: [],
+  User: {}
 };
 
 export const taskReducer = (state = initialState, { type, payload }) => {
@@ -69,6 +70,11 @@ export const taskReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         allTasks: payload
+      };
+    case types.USER_PROFILE:
+      return {
+        ...state,
+        User: payload
       };
 
     default:

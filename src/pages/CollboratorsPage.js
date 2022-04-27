@@ -6,7 +6,7 @@ import Contributor from "../components/Contributor";
 import { useParams, useHistory } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchUsers, fetchContributors } from "../redux/actions/actions";
+import { fetchUsers, fetchContributors, UserProfile } from "../redux/actions/actions";
 
 
 export default function CollboratorsPage({ token, locale }) {
@@ -15,7 +15,7 @@ export default function CollboratorsPage({ token, locale }) {
   const payload = jwt_decode(token);
   const history = useHistory();
   const dispatch = useDispatch();
-  const { allUsers, allContributors } = useSelector(state => state.tasks);
+  const { allUsers, allContributors, User } = useSelector(state => state.tasks);
 
   useEffect(() => {
     dispatch(fetchUsers(token, locale, history));
@@ -23,10 +23,15 @@ export default function CollboratorsPage({ token, locale }) {
     //eslint-disable-next-line
   }, []);
 
+  useEffect(() => {
+    dispatch(UserProfile(history, token, locale, payload.id));
+    //eslint-disable-next-line
+  }, [User]);
+
 
   return (
     <div className="whole" >
-      <DashNavBar token={token} locale={locale} />
+      <DashNavBar token={token} locale={locale} User={User} />
       <div className="collaborators-container" >
         <CollaboratorSideBar contributors={allContributors} />
         <div className="main" >

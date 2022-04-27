@@ -22,6 +22,16 @@
   text-align: center;
 }
 .profile-photo{
+  width:100%;
+  border-radius: 50%;
+  margin: auto;
+}
+.user-info-profile{
+  height: 50%;
+  padding: 10px;
+  margin: 0 auto;
+}
+.profile-photo-null{
   width: 80%;
   border-radius: 50%;
 }
@@ -31,7 +41,9 @@
   position: relative;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
+
 .Camera{
   color: dodgerblue;
   font-size: 3rem;
@@ -51,13 +63,13 @@
   width: 100%;
   margin: 0 auto;
 }
-.c-image{
-width: 50%;
-padding: 10px;
+.cimage{
+ width: 80%;
+ padding: 10px;
+ margin: 0 auto;
 }
 .finalImage{
   padding: 5px;
-  
 }
 .send-picture{
   background: #0065ff;

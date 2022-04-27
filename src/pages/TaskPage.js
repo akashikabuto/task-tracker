@@ -7,17 +7,19 @@ import TargetCard from "../components/TargetCard";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { seeAllTasks } from "../redux/actions/actions";
+import { seeAllTasks, UserProfile } from "../redux/actions/actions";
+import jwtDecode from "jwt-decode";
 
 
 export default function TaskPage({ token, locale }) {
 
 
-  const { allTasks } = useSelector(state => state.tasks);
+  const { allTasks, User } = useSelector(state => state.tasks);
   const { t, i18n } = useTranslation();
   const history = useHistory();
   const { id } = useParams();
   const dispatch = useDispatch();
+  const payload = jwtDecode(token);
 
   useEffect(() => {
     i18n.changeLanguage(locale);
@@ -33,9 +35,14 @@ export default function TaskPage({ token, locale }) {
     history.push(`/dashboard/newTask/${id}`);
   }
 
+  useEffect(() => {
+    dispatch(UserProfile(history, token, locale, payload.id));
+    //eslint-disable-next-line
+  }, [User]);
+
   return (
     <div className="taskpage" >
-      <DashNavBar token={token} locale={locale} />
+      <DashNavBar token={token} locale={locale} User={User} />
       <div className="button-wrapper" >
         <button className="add-button" onClick={goToAddTasks}  >{t("AddTask")}</button>
       </div>
