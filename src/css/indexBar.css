@@ -22,10 +22,10 @@
   width: fit-content;
   text-transform: uppercase;
   margin: 10px;
-  color: #0065ff;
+  color: #002966;
 }
 .index-sign-up-button {
-  background: #0065ff;
+  background: #002966;
   border: none;
   padding: 0.75rem 1.5rem;
   border-radius: 2px;
@@ -42,7 +42,7 @@
   text-transform: uppercase;
   padding-left: 10px;
   font-size: 20px;
-  color: #0065ff;
+  color: #002966;
 }
 
 @media only screen and (max-width: 480px) {
@@ -79,6 +79,6 @@
     text-transform: uppercase;
     padding-left: 10px;
     font-size: 15px;
-    color: #0065ff;
+    color: #002966;
   }
 }

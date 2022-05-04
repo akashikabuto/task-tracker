@@ -35,11 +35,11 @@
   position: sticky;
   width: 100%;
   text-align: center;
-  background-color: blue;
+  background-color: #002966;
   color: whitesmoke;
 }
 .add-button {
-  background: #0065ff;
+  background: #002966;
   border: 1px solid transparent;
   padding: 0.5rem 1.5rem;
   border-radius: 5px;
@@ -58,6 +58,6 @@
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
 .tasks::-webkit-scrollbar-thumb {
-  background-color: #0065ff;
-  outline: 1px solid #0065ff;
+  background-color: #002966;
+  outline: 1px solid #002966;
 }

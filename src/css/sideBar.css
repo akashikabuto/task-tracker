@@ -10,7 +10,7 @@
   display: flex;
   justify-content: center;
   flex-direction: row;
-  border: 1px solid blue;
+  border: 1px solid #002966;
   padding: 10px;
   margin-bottom: 10px;
   background-color: white;
@@ -18,7 +18,7 @@
 
 .logo-container p {
   padding-left: 8px;
-  color: blue;
+  color: #002966;
 }
 
 .logo-container p:hover {
@@ -33,5 +33,5 @@
   margin-top: 10px;
   margin-bottom: 10px;
   text-align: center;
-  color: blue;
+  color: #002966;
 }

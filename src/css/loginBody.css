@@ -38,7 +38,7 @@
 }
 
 .login-button {
-  background: #0065ff;
+  background: #002966;
   border: 1px solid transparent;
   padding: 0.5rem 1.5rem;
   border-radius: 5px;
@@ -51,7 +51,7 @@
 }
 
 .login-not-account {
-  color: blue;
+  color: #002966;
   font-size: 14px;
 }
 

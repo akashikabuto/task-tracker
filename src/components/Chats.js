@@ -15,9 +15,7 @@ export default function Chats({ userId, socket, chatroomId }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (socket) {
-      dispatch(getRoomMessages(chatroomId, token));
-    }
+    if (socket) dispatch(getRoomMessages(chatroomId, token));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [socket]);
 
@@ -29,9 +27,7 @@ export default function Chats({ userId, socket, chatroomId }) {
 
   useEffect(() => {
     scrollToBottom();
-    if (socket) {
-      dispatch(allMessagesBetweenUsers());
-    }
+    if (socket) dispatch(allMessagesBetweenUsers());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [messages]);
 

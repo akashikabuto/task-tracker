@@ -48,7 +48,7 @@
 }
 
 .Camera{
-  color: dodgerblue;
+  color: #002966;
   font-size: 3rem;
   position: absolute;
   bottom: 10px;
@@ -75,7 +75,7 @@
   padding: 5px;
 }
 .send-picture{
-  background: #0065ff;
+  background: #002966;
   border: 1px solid transparent;
   padding: 0.5rem 1.5rem;
   border-radius: 5px;

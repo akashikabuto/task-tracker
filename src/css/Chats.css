@@ -12,13 +12,13 @@
   margin: 5px;
 }
 .username{
-  color: blue;
+  color: #002966;
   font-weight: 710;
 }
 .m2 {
   display: flex;
   justify-content: space-between;
-  background-color: blue;
+  background-color: #002966;
   width: fit-content;
   padding: 10px;
   border-radius: 10px;
@@ -47,8 +47,8 @@
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
 .scroll::-webkit-scrollbar-thumb {
-  background-color: #0065ff;
-  outline: 1px solid #0065ff;
+  background-color: #002966;
+  outline: 1px solid #002966;
 }
 .image-sent{
   height: 150px;

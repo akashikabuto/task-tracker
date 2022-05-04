@@ -6,7 +6,7 @@
   margin: 10px;
   margin-left: 19px;
   background-color: 'white';
-  outline-color: #0065ff;
+  outline-color: #002966;
 }
 .contributor{
   padding: 5px;
@@ -21,7 +21,7 @@
   margin: 5px;
 }
 .button{
-  background: #0065ff;
+  background: #002966;
   border: 1px solid transparent;
   padding: 0.5rem 1.5rem;
   border-radius: 5px;
