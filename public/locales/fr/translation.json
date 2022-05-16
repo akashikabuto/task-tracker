@@ -33,5 +33,7 @@
   "PhoneRequired":"Le téléphone est requis",
   "usernameError":"Nom d'utilisateur est nécessaire",
   "fullNameError":"Nom  ne doivent être que des lettres",
-  "AccountIsRequired":"Un compte est requis"
+  "AccountIsRequired":"Un compte est requis",
+  "ProjectArleadyExists":"Projet est deja ra",
+  "ThePageNotFound":"La page vous recherche n'existe pas"
 }

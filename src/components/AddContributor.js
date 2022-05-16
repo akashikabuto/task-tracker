@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 import '../css/addContr.css';
 
-export default function AddContributor({ username, projectId, contributor, contributorEmail, projectName }) {
+export default function AddContributor({ username, projectId, contributor, contributorEmail, projectName, locale }) {
 
   let url = `https://mern-learning-task-tracker.herokuapp.com`;
 
@@ -18,8 +18,7 @@ export default function AddContributor({ username, projectId, contributor, contr
   const [message, setMessage] = useState('');
 
   const [loading, setLoading] = useState(false);
-  const lang = localStorage.getItem('lang') || 'eng';
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
 
 
   async function addContributor() {
@@ -28,7 +27,7 @@ export default function AddContributor({ username, projectId, contributor, contr
       method: "POST",
       headers: {
         'content-type': "application/json",
-        'accept-language': `${lang}`,
+        'accept-language': `${locale}`,
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       },
       body: JSON.stringify(initialState)
@@ -48,7 +47,6 @@ export default function AddContributor({ username, projectId, contributor, contr
       }
       if (res.status === 500) {
         setLoading(false);
-        alert(JSON.stringify(res));
       }
     } catch (error) {
       setLoading(false);
@@ -58,16 +56,16 @@ export default function AddContributor({ username, projectId, contributor, contr
 
 
   useEffect(() => {
-    i18n.changeLanguage(lang);
+    i18n.changeLanguage(locale);
     //eslint-disable-next-line
-  }, [lang]);
+  }, [locale]);
 
 
   return (
     <div className='searched-contributor' >
       <p>{username}</p>
       <button className='add-contri-button' onClick={addContributor} disabled={loading ? true : false}  >
-        {loading ? "loading..." : message ? message : "Add"}
+        {loading ? (t('loading')) : message ? message : (t("Add"))}
       </button>
     </div>
   );

@@ -32,3 +32,17 @@
   font-size: 30px;
   padding-left: 10px;
 }
+
+.mss-f{
+  height: 500px;
+  width: 500px;
+}
+.crop-image-yu{
+  width: fit-content;
+  height: fit-content;
+}
+
+.crop-container-message{
+  width: 100%;
+}
+

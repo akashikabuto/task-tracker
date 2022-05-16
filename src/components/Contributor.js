@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import '../css/CoContainer.css';
 import AddContributor from './AddContributor';
 
-export default function Contributor({ userId, users, Contributor, projectId, projectName }) {
+export default function Contributor({ userId, users, Contributor, projectId, projectName, locale }) {
 
   const [Users, setUsers] = useState([]);
   const [Owner, setOwner] = useState('');
@@ -42,6 +42,7 @@ export default function Contributor({ userId, users, Contributor, projectId, pro
               contributor={users._id}
               contributorEmail={users.email}
               projectName={projectName}
+              locale={locale}
             />;
           })}
         </> : ""}

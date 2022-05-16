@@ -3,18 +3,50 @@ import '../css/MessageFooter.css';
 import { IoSend } from "react-icons/io5";
 import Dropzone from "react-dropzone";
 import { FaFileImage } from "react-icons/fa";
+import Modal from 'react-modal';
+import ReactCrop from 'react-image-crop';
 
 
+
+
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+};
+
+Modal.setAppElement('#root');
 
 
 
 export default function MessageFooter({ socket, chatroomId }) {
 
+  const url = `https://api.cloudinary.com/v1_1/akashi/upload`;
+
 
   const [state, setState] = useState({
     message: "",
   });
-  const url = `https://api.cloudinary.com/v1_1/akashi/upload`;
+
+
+
+  const [file, setFile] = useState(null);
+
+  const [crop, setCrop] = useState({
+    unit: '%', // Can be 'px' or '%'
+    x: 25,
+    y: 25,
+    width: 50,
+    height: 50,
+  });
+  const [outPut, setOutput] = useState(null);
+  const [imageRef, setImageRef] = useState('');
+
 
   function emitMessage() {
     socket.emit("chatroomMessage", {
@@ -46,6 +78,50 @@ export default function MessageFooter({ socket, chatroomId }) {
     return res.secure_url;
   }
 
+  const onChange = (crop) => {
+    setCrop(crop);
+  };
+
+  function cropImage(crop) {
+    if (imageRef && crop.width && crop.height) {
+      const croppedImage = getCroppedImage(
+        imageRef,
+        crop
+      );
+      setOutput(croppedImage);
+      console.log('u', outPut);
+    }
+  }
+
+  function getCroppedImage(sourceImage, pixelCrop) {
+    const canvas = document.createElement('canvas');
+    const scaleX = sourceImage.naturalWidth / sourceImage.width;
+    const scaleY = sourceImage.naturalHeight / sourceImage.height;
+    canvas.width = pixelCrop.width;
+    canvas.height = pixelCrop.height;
+    const ctx = canvas.getContext('2d');
+
+    ctx.drawImage(
+      sourceImage,
+      pixelCrop.x * scaleX,
+      pixelCrop.y * scaleY,
+      pixelCrop.width * scaleX,
+      pixelCrop.height * scaleY,
+      0,
+      0,
+      pixelCrop.width,
+      pixelCrop.height
+    );
+
+    return canvas.toDataURL('image/jpeg', 1);
+  }
+
+  async function getStringUrl() {
+    const blob = await fetch(outPut).then(res => res.blob());
+    console.log(blob);
+    uploadFile(blob);
+  }
+
 
   async function uploadFile(file) {
     const formData = new FormData();
@@ -57,30 +133,72 @@ export default function MessageFooter({ socket, chatroomId }) {
     };
     const imageUrl = await upload(config);
     sendPicture(imageUrl);
+    console.log('image', imageUrl);
+    closeModal();
   }
 
   function onDrop(file) {
-    uploadFile(file[0]);
-
+    openModal();
+    const reader = new FileReader();
+    reader.addEventListener('load', () =>
+      setFile(reader.result)
+    );
+    reader.readAsDataURL(file[0]);
   }
 
 
-  return (
-    <div className='MessageFooter' >
-      <div className='message-container'  >
-        <input placeholder='Enter Message' value={state.message} className='mess-input'
-          onChange={(e) => setState({ ...state, message: e.target.value })} />
-        <IoSend color='white' className='send-m-button' onClick={sendMessage} />
-        <Dropzone multiple={false} accept="image/*" onDrop={onDrop}  >
-          {({ getRootProps, getInputProps }) => (
-            <div {...getRootProps()} className='k'>
-              <input {...getInputProps()} />
-              <FaFileImage className='send-m-button-file' color='white' />
-            </div>
-          )}
-        </Dropzone>
-      </div>
+  const [modalIsOpen, setIsOpen] = useState(false);
 
-    </div>
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  console.log('crop', crop);
+
+  return (
+    <>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Example Modal"
+      >
+        <div className='mss-f' >
+          {file &&
+            <div className="crop-container-message" >
+              <ReactCrop
+                src={file}
+                className="crop-image-yu"
+                crop={crop}
+                onChange={onChange}
+                ruleOfThirds
+                onComplete={(cropConfig) => cropImage(cropConfig)}
+                onImageLoaded={(imageRef) => setImageRef(imageRef)}
+              />
+            </div>
+          }
+        </div>
+        {outPut && <button onClick={getStringUrl} >Upload</button>}
+      </Modal>
+      <div className='MessageFooter' >
+        <div className='message-container'  >
+          <input placeholder='Enter Message' value={state.message} className='mess-input'
+            onChange={(e) => setState({ ...state, message: e.target.value })} />
+          <IoSend color='white' className='send-m-button' onClick={sendMessage} />
+          <Dropzone multiple={false} accept="image/*" onDrop={onDrop}  >
+            {({ getRootProps, getInputProps }) => (
+              <div {...getRootProps()} className='k'>
+                <input {...getInputProps()} />
+                <FaFileImage className='send-m-button-file' color='white' />
+              </div>
+            )}
+          </Dropzone>
+        </div>
+      </div>
+    </>
   );
 }

@@ -33,5 +33,7 @@
   "PhoneRequired":"Phone is required",
   "usernameError":"Username is required",
   "fullNameError":"FullNames must be letters only",
-  "AccountIsRequired":"Account is required"
+  "AccountIsRequired":"Account is required",
+  "ProjectArleadyExists":"Project arleady exists",
+  "ThePageNotFound":"The page you requested for was not found"
 }

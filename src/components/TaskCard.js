@@ -15,9 +15,7 @@ export default function TaskCard({ id, status, title }) {
   return (
     <div className={'task-card'}
       ref={drag}
-      style={{
-        opacity: isDragging ? 0 : 1,
-      }}
+      style={{ opacity: isDragging ? 0 : 1 }}
     >
       <p className='title' > {title} </p>
       <p className='status'>{status} </p>

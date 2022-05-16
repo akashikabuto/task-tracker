@@ -26,7 +26,7 @@ export default function AddTaskPage({ token, locale }) {
       <div className="dashboard-container" >
         <SideBar locale={locale} />
         <div className="main" >
-          <AddTask />
+          <AddTask locale={locale} token={token} />
         </div>
       </div>
     </div>

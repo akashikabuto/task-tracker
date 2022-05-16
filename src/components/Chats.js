@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import MessageFooter from "./MessageFooter";
 import '../css/Chats.css';
 import { useSelector, useDispatch } from 'react-redux';
@@ -6,10 +6,11 @@ import { getRoomMessages, allMessagesBetweenUsers } from '../redux/actions/actio
 import Messages from "./Messages";
 
 
+
+
 export default function Chats({ userId, socket, chatroomId }) {
 
   const { messages } = useSelector(state => state.tasks);
-
   let id = userId;
   const token = localStorage.getItem('token');
   const dispatch = useDispatch();
@@ -30,6 +31,10 @@ export default function Chats({ userId, socket, chatroomId }) {
     if (socket) dispatch(allMessagesBetweenUsers());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [messages]);
+
+
+
+
 
 
   return (

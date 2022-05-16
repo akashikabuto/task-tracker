@@ -161,7 +161,6 @@ export default function ProfileComponent({ token, locale, User }) {
         {outPut && <div className="finalImage" >
           <img src={outPut} alt="user-profile-Logo" />
         </div>}
-
       </div>
     </div>
   );

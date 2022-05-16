@@ -10,7 +10,7 @@ import '../css/addTask.css';
 
 
 
-export default function AddTask({ locale }) {
+export default function AddTask({ locale, token }) {
 
   const initialState = {
     name: "",
@@ -24,7 +24,6 @@ export default function AddTask({ locale }) {
 
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
-  const token = localStorage.getItem("token");
   const [state, setState] = useState(initialState);
 
   function handleCreateProject(e) {
@@ -48,7 +47,7 @@ export default function AddTask({ locale }) {
         <h3>{t("ADD_PROJECT")}</h3>
       </div>
       <div className='add-task-form' >
-        {projectExists ? <p style={{ color: "red", padding: "5px" }} >Project arleady exists</p> : ""}
+        {projectExists && <p style={{ color: "red", padding: "5px" }} >{t("ProjectArleadyExists")}</p>}
         <form onSubmit={handleCreateProject} >
           <div className='input-flex' >
             <label>{t("Project_name")}</label>
