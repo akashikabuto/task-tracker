@@ -35,5 +35,15 @@
   "fullNameError":"Nom  ne doivent être que des lettres",
   "AccountIsRequired":"Un compte est requis",
   "ProjectArleadyExists":"Projet est deja ra",
-  "ThePageNotFound":"La page vous recherche n'existe pas"
+  "ThePageNotFound":"La page vous recherche n'existe pas",
+  "ProjectName":"Nom du projet",
+  "Description":"La description",
+  "TaskName":"Nom de la tâche",
+  "SmallDescription":"la description",
+  "insert":"Insérer",
+  "You are not the owner of this project":"Vous n'êtes pas le propriétaire de ce projet",
+  "Search collaborator":"Rechercher un collaborateur",
+  "Contributors":"Contributeurs",
+  "Project has 0 contributors":"Projet a 0 contributeurs",
+  "Project":"Projet"
 }

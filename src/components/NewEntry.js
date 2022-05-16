@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { seeAllTasks } from "../redux/actions/actions";
 import { useHistory } from 'react-router-dom';
 
-export default function NewEntry({ projectId }) {
+export default function NewEntry({ projectId, t }) {
 
   let url = `https://mern-learning-task-tracker.herokuapp.com`;
 
@@ -78,20 +78,20 @@ export default function NewEntry({ projectId }) {
       <form onSubmit={handleSubmit} >
         {message && <div className="insert-error"><p>{message}</p></div>}
         <div className='flex' >
-          <label>Task name</label>
-          <input type='text' placeholder='Task name' className='input'
+          <label>{t("TaskName")}</label>
+          <input type='text' placeholder={t("TaskName")} className='input'
             required
             onChange={(e) => setState({ ...state, taskName: e.target.value })}
           />
         </div>
         <div className='flex' >
-          <label>Small description</label>
-          <input type='text' placeholder='description' className='input'
+          <label> {t("SmallDescription")} </label>
+          <input type='text' placeholder={t("SmallDescription")} className='input'
             required
             onChange={(e) => setState({ ...state, description: e.target.value })}
           />
         </div>
-        <button className='button' disabled={loading ? true : false}  > {loading ? "loading...." : "Insert"} </button>
+        <button className='button' disabled={loading ? true : false}  > {loading ? t('loading') : t("insert")} </button>
       </form>
     </>
   );

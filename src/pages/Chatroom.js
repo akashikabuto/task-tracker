@@ -7,6 +7,7 @@ import { setUpSocket, UserProfile, fetchContributors } from '../redux/actions/ac
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from "react-router-dom";
 import jwt_decode from "jwt-decode";
+import { useTranslation } from 'react-i18next';
 
 export default function Chatroom({ token, locale }) {
 
@@ -16,6 +17,10 @@ export default function Chatroom({ token, locale }) {
   const payload = jwt_decode(token);
   const [userId, setUserId] = useState("");
   const history = useHistory();
+  const { t, i18n } = useTranslation();
+
+
+
   useEffect(() => {
     dispatch(setUpSocket());
     if (socket) {
@@ -48,12 +53,18 @@ export default function Chatroom({ token, locale }) {
   }, [User]);
 
 
+  useEffect(() => {
+    i18n.changeLanguage(locale);
+    //eslint-disable-next-line
+  }, [locale]);
+
+
 
   return (
     <div className='chatroom' >
       <DashNavBar token={token} locale={locale} User={User} />
       <div className='chatroom-container' >
-        <ChatGroupPeople contributors={allContributors} projectName={projectName} />
+        <ChatGroupPeople contributors={allContributors} projectName={projectName} t={t} />
         <div className='chats' >
           <Chats userId={userId} chatroomId={chatroomId} socket={socket} />
         </div>

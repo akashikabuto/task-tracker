@@ -35,5 +35,15 @@
   "fullNameError":"FullNames must be letters only",
   "AccountIsRequired":"Account is required",
   "ProjectArleadyExists":"Project arleady exists",
-  "ThePageNotFound":"The page you requested for was not found"
+  "ThePageNotFound":"The page you requested for was not found",
+  "ProjectName":"Project name",
+  "Description":"Description",
+  "TaskName":"Task name",
+  "SmallDescription":"Small description",
+  "insert":"insert",
+  "You are not the owner of this project":"You are not the owner of this project",
+  "Search collaborator":"Search collaborator",
+  "Contributors":"Contributors",
+  "Project has 0 contributors":"Project has 0 contributors",
+  "Project":"Project"
 }

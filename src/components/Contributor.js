@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import '../css/CoContainer.css';
 import AddContributor from './AddContributor';
 
-export default function Contributor({ userId, users, Contributor, projectId, projectName, locale }) {
+export default function Contributor({ userId, users, Contributor, projectId, projectName, locale, t }) {
 
   const [Users, setUsers] = useState([]);
   const [Owner, setOwner] = useState('');
@@ -32,7 +32,7 @@ export default function Contributor({ userId, users, Contributor, projectId, pro
   return (
     <div className='contributor' >
       {Owner === userId ? <div>
-        <input type='text' placeholder='Search collaborator' className='collaborator-input'
+        <input type='text' placeholder={t("Search collaborator")} className='collaborator-input'
           onChange={(e) => setSearch(e.target.value)}
         />
         {Users.length !== 0 ? <>
@@ -47,7 +47,7 @@ export default function Contributor({ userId, users, Contributor, projectId, pro
           })}
         </> : ""}
       </div> : <div>
-        <p>You are not the owner of this project <br />so you can't add contributors</p>
+        <p>{t("You are not the owner of this project")} <br /> {t("so you can't add contributors")} </p>
       </div>
       }
     </div>

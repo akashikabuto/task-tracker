@@ -51,8 +51,8 @@ export default function AddTask({ locale, token }) {
         <form onSubmit={handleCreateProject} >
           <div className='input-flex' >
             <label>{t("Project_name")}</label>
-            <Input placeholder='Project name' type='text' name='name' handleOnchange={OnChange} />
-            <Input placeholder='Description' type='text' name='description' handleOnchange={OnChange} />
+            <Input placeholder={t("ProjectName")} type='text' name='name' handleOnchange={OnChange} />
+            <Input placeholder={t("Description")} type='text' name='description' handleOnchange={OnChange} />
             <button className='add-button'>{t("Add")}</button>
           </div>
         </form>
