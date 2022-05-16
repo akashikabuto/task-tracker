@@ -5,8 +5,7 @@ import Dropzone from "react-dropzone";
 import { FaFileImage } from "react-icons/fa";
 import Modal from 'react-modal';
 import ReactCrop from 'react-image-crop';
-
-
+import 'react-image-crop/dist/ReactCrop.css';
 
 
 const customStyles = {
@@ -23,25 +22,15 @@ const customStyles = {
 
 Modal.setAppElement('#root');
 
-
-
-export default function MessageFooter({ socket, chatroomId }) {
+export default function FooterMessage({ socket, chatroomId }) {
 
   const url = `https://api.cloudinary.com/v1_1/akashi/upload`;
 
-
-
-  const [state, setState] = useState({
-    message: "",
-
-  });
-
-
-
+  const [message, setMessage] = useState('');
   const [file, setFile] = useState(null);
 
   const [crop, setCrop] = useState({
-    unit: '%',
+    unit: '%', // Can be 'px' or '%'
     x: 25,
     y: 25,
     width: 50,
@@ -49,15 +38,16 @@ export default function MessageFooter({ socket, chatroomId }) {
   });
   const [outPut, setOutput] = useState(null);
   const [imageRef, setImageRef] = useState('');
+  const [modalIsOpen, setIsOpen] = useState(false);
 
 
   function emitMessage() {
     socket.emit("chatroomMessage", {
       chatroomId,
-      message: state.message,
+      message,
       type: "text"
     });
-    setState({ ...state, message: "" });
+    setMessage('');
   }
 
   const sendMessage = () => {
@@ -148,9 +138,6 @@ export default function MessageFooter({ socket, chatroomId }) {
     reader.readAsDataURL(file[0]);
   }
 
-
-  const [modalIsOpen, setIsOpen] = useState(false);
-
   function openModal() {
     setIsOpen(true);
   }
@@ -158,8 +145,6 @@ export default function MessageFooter({ socket, chatroomId }) {
   function closeModal() {
     setIsOpen(false);
   }
-
-  console.log('crop', crop);
 
   return (
     <>
@@ -175,7 +160,7 @@ export default function MessageFooter({ socket, chatroomId }) {
               <ReactCrop
                 src={file}
                 className="crop-image-f"
-                crop={state.crop}
+                crop={crop}
                 onChange={onChange}
                 ruleOfThirds
                 onComplete={(cropConfig) => cropImage(cropConfig)}
@@ -188,8 +173,8 @@ export default function MessageFooter({ socket, chatroomId }) {
       </Modal>
       <div className='MessageFooter' >
         <div className='message-container'  >
-          <input placeholder='Enter Message' value={state.message} className='mess-input'
-            onChange={(e) => setState({ ...state, message: e.target.value })} />
+          <input placeholder='Enter Message' value={message} className='mess-input'
+            onChange={(e) => setMessage(e.target.value)} />
           <IoSend color='white' className='send-m-button' onClick={sendMessage} />
           <Dropzone multiple={false} accept="image/*" onDrop={onDrop}  >
             {({ getRootProps, getInputProps }) => (

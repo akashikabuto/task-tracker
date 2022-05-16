@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from "react";
-import MessageFooter from "./MessageFooter";
+import { useEffect, useRef } from "react";
 import '../css/Chats.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { getRoomMessages, allMessagesBetweenUsers } from '../redux/actions/actions';
 import Messages from "./Messages";
+import FooterMessage from "./FooterMessage";
 
 
 
@@ -44,7 +44,7 @@ export default function Chats({ userId, socket, chatroomId }) {
           <Messages key={i} userId={id} messages={message} scrollRef={scrollRef} />
         )}
       </div>
-      <MessageFooter socket={socket} chatroomId={chatroomId} />
+      <FooterMessage socket={socket} chatroomId={chatroomId} />
     </>
   );
 }
