@@ -13,7 +13,7 @@ export default function ChatGroupPeople({ contributors, projectName, t }) {
           <img src={userLogo} alt='user-pic' className='user-pic' />
           <p>{res.contributorName}</p>
         </div>;
-      }) : <p>0 contributors</p>}
+      }) : <p>0 {t("Contributors")} </p>}
     </div>
   );
 }

@@ -110,7 +110,6 @@ export default function FooterMessage({ socket, chatroomId }) {
 
   async function getStringUrl() {
     const blob = await fetch(outPut).then(res => res.blob());
-    console.log(blob);
     uploadFile(blob);
   }
 
@@ -125,7 +124,6 @@ export default function FooterMessage({ socket, chatroomId }) {
     };
     const imageUrl = await upload(config);
     sendPicture(imageUrl);
-    console.log('image', imageUrl);
     closeModal();
   }
 
